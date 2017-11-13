@@ -1,0 +1,16 @@
+<apex:page standardController="Student__c" extensions="StudentFormController">
+  	<apex:form >
+  		<apex:pageBlock >
+      		<apex:pageBlockSection columns="1">
+              <apex:outputField value="{!Student__c.Name}"/>
+                  <apex:outputField value="{!Student__c.First_Name__c}"/>
+                  <apex:outputField value="{!Student__c.Last_Name__c}"/>
+                  <apex:outputField value="{!Student__c.DOB__c}"/>
+                  <apex:outputField value="{!Student__c.Class__r.Name}"/>
+              </apex:pageBlockSection>
+          	<apex:pageBlockButtons >
+            	<apex:commandButton action="{!attach}" value="Generate PDF" />
+         	</apex:pageBlockButtons>
+      	</apex:pageBlock>
+  	</apex:form>
+</apex:page>
