@@ -1,0 +1,96 @@
+<apex:page controller="OnlinePurchaseOrderController_c">
+    <apex:form id="form" >
+    	<apex:pageBlock title="Customer Details">
+            <apex:pageBlockSection title="Sign In">
+                <apex:inputField value="{!order.Account__c}"/>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!goToProductList}" value="Purchase" reRender="productList"/>
+                <apex:commandButton action="{!cancel}" value="Cancel" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        <apex:pageBlock title="Product" id="productList" rendered="{!renderProductList}">
+            <apex:pageBlockSection title="Filter Results" rendered="{!renderProductList}">
+                <apex:pageBlockSectionItem >
+                    <apex:inputText value="{!searchTerm}" />
+                    <apex:commandButton action="{!search}" value="Search All available Products"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+    		<apex:pageBlockTable title="Product List" value="{!products}" var="product" rendered="{!renderProductList}">
+                <apex:column >
+                    <apex:commandLink reRender="Cart" action="{!addToCart}">
+                        <apex:image width="20" height="20"
+                                    url="{!URLFOR($Resource.ShoppingCart, '/ShoppingCart/addToCart.png')}" /> 
+                        <apex:param name="selectedProductId" value="{!product.id}" assignTo="{!selectedProductId}"/>
+                    </apex:commandLink>
+                </apex:column>
+                
+                <apex:column value="{!product.Name}" />
+                <apex:column value="{!product.ProductCode__c}" />
+                <apex:column value="{!product.Category__c}" />
+                <apex:column value="{!product.UnitPrice__c}" />
+            </apex:pageBlockTable>
+        
+            <apex:panelGrid columns="4" rendered="{!renderProductList}"> 
+                 <apex:commandButton status="fetchStatus" reRender="productList"
+                                     value="First" action="{!availableProductsList.first}"
+                                     disabled="{!!availableProductsList.hasPrevious}" title="First Page"/>      
+                   <apex:commandButton status="fetchStatus" reRender="productList"
+                                       value="Previous" action="{!availableProductsList.previous}"
+                                       disabled="{!!availableProductsList.hasPrevious}" title="Previous Page"/> 
+                   <apex:commandButton status="fetchStatus" reRender="productList"
+                                       value="Next" action="{!availableProductsList.next}"
+                                       disabled="{!!availableProductsList.hasNext}" title="Next Page"/>      
+                   <apex:commandButton status="fetchStatus" reRender="productList"
+                                       value="Last" action="{!availableProductsList.last}"
+                                       disabled="{!!availableProductsList.hasNext}" title="Last Page"/> 
+            </apex:panelGrid>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="Cart" id="Cart">
+            <apex:pageBlockSection rendered="{!renderCart}">
+	            <apex:pageBlockSectionItem >
+                    Filter: 
+                    <apex:selectList value="{!filterCategory}" size="1">
+                        <apex:selectOptions value="{!filterCategories}"/>
+                        <apex:actionSupport event="onchange" reRender="CartItems"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockTable id="CartItems" value="{!orderLineItems}" var="orderProduct" rendered="{!renderCart}" onmouseover="quantityChange()">
+                <apex:column >
+                    <apex:commandLink reRender="Cart" action="{!removeFromCart}">
+                        <apex:image width="20" height="20"
+                                    url="{!URLFOR($Resource.ShoppingCart, '/ShoppingCart/removeFromCart.png')}" /> 
+                        <apex:param name="selectedOrderItemId" value="{!orderProduct.Product__r.id}" assignTo="{!selectedOrderItemId}"/>
+                    </apex:commandLink>
+                </apex:column>
+                
+                <apex:column headerValue="Product Name" value="{!orderProduct.Product__r.Name}" />
+                <apex:column headerValue="Product Code" value="{!orderProduct.Product__r.ProductCode__c}" />
+                <apex:column headerValue="Product Category" value="{!orderProduct.Product__r.Category__c}" />
+                <apex:column headerValue="Quantity">
+                    <apex:outputField value="{!orderProduct.Quantity__c}">
+                		<apex:inlineEditSupport />
+                    </apex:outputField>
+                </apex:column>
+                
+                <apex:column value="{!orderProduct.UnitPrice__c}" />
+                <apex:column headerValue="TotalPrice" id="totalPrice">
+                    <apex:outputText value="{!orderProduct.Quantity__c*orderProduct.UnitPrice__c}" />
+                </apex:column>
+                
+            </apex:pageBlockTable>
+            <apex:actionFunction name="quantityChange" reRender="totalPrice"/>
+            
+            <apex:pageBlockButtons location="bottom" rendered="{!renderCart}">
+                <apex:commandButton action="{!checkout}" value="Checkout">
+                	<apex:param name="mapOfOrderLineItems" value="{!mapOfOrderLineItems}" assignTo="{!mapOfOrderLineItems}"/>
+                </apex:commandButton>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

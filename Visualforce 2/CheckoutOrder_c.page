@@ -1,0 +1,27 @@
+<apex:page controller="OnlinePurchaseOrderController_c">
+    <apex:form >
+        <apex:pageBlock title="Order Details">
+            <apex:pageBlockSection title="Customer Details">
+                <apex:pageBlockSectionItem >
+                    <apex:outputField value="{!order.Account__r.Name}" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockTable title="Order Items" value="{!orderLineItems}" var="orderItem">
+                <apex:column value="{!orderItem.Product__r.ProductCode__c}" />
+                <apex:column value="{!orderItem.Product__r.Name}" />
+                <apex:column value="{!orderItem.Quantity__c}" />
+                <apex:column value="{!orderItem.UnitPrice__c}" />
+                <apex:column headerValue="TotalPrice">
+                	<apex:outputText value="{!orderItem.Quantity__c*orderItem.UnitPrice__c}" />
+                </apex:column>
+            </apex:pageBlockTable>
+            
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Place Order" action="{!placeOrder}" />
+                <apex:commandButton value="Back" action="{!back}" />
+                <apex:commandButton value="Cancel" action="{!cancel}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
