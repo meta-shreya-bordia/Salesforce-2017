@@ -1,0 +1,27 @@
+<apex:page controller="OnlinePurchaseOrderController_c" showHeader="true">
+    <apex:form >
+        <apex:pageBlock title="{!$Label.Order_Details}">
+            <apex:pageBlockSection title="{!$Label.Customer_Details}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputField value="{!order.Account__r.Name}" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockTable title="{!$Label.Order_Items}" value="{!orderLineItems}" var="orderItem">
+                <apex:column headerValue="{!$Label.Product_Code}" value="{!orderItem.Product__r.ProductCode__c}" />
+                <apex:column headerValue="{!$Label.Product_Name}" value="{!orderItem.Product__r.Name}" />
+                <apex:column headerValue="{!$Label.Quantity}" value="{!orderItem.Quantity__c}" />
+                <apex:column headerValue="{!$Label.Unit_Price}" value="{!orderItem.UnitPrice__c}" />
+                <apex:column headerValue="{!$Label.Total_Price}">
+                	<apex:outputText value="{! orderItem.Quantity__c*orderItem.UnitPrice__c}" />
+                </apex:column>
+            </apex:pageBlockTable>
+            
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="{!$Label.Order}" action="{!placeOrder}" />
+                <apex:commandButton value="{!$Label.Back}" action="{!back}" />
+                <apex:commandButton value="{!$Label.Cancel}" action="{!cancel}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
