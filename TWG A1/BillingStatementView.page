@@ -1,0 +1,237 @@
+<apex:page controller="BillingStatementController" sidebar="false">
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        
+        <script>
+        $(document).ready(function(){
+           $('[id$=PaymentError]').hide();
+           $('[id$=AllocationError]').hide();
+            
+           $('[id$=PaymentAmountId]').blur(function(){
+                var pymntAmnt = parseFloat($(this).val());
+                if(pymntAmnt < 0 ){
+                    $('[id$=PaymentError]').hide();
+                    $(this).css({"color":"red", "font-weight":"bold"});
+                    
+                    $('[id$=TotalAvailableToAllocatedId]').text(function(){
+                        $(this).css({"color":"red"});
+                        return pymntAmnt;
+                    });
+                }else{
+					$('[id$=PaymentError]').show();
+                    
+                    $(this).css({"color":"black", "font-weight":"bold"});
+                    
+                    $('[id$=TotalAvailableToAllocatedId]').text(function(){
+                        $(this).css({"color":"black"});
+                        return 0.0;
+                    });
+                }
+            });
+            
+            $('[id$=confirmbtn]').click(function(){
+            	var paymentAmount = parseFloat($('[id$=PaymentAmountId]').val());
+                var totalAllocatedAmount = parseFloat($('[id$=TotalAllocateId]').text());
+                var totalAvailableToAllocateAmount = parseFloat($('[id$=TotalAvailableToAllocatedId]').text());
+
+            });
+        });
+        </script>
+        
+        <script type="text/javascript">
+        function populateBillingStatement(chckbox, allocateInpt, outstandingAmt){
+            var allocate = document.getElementById(allocateInpt);
+            
+            var outstanding = document.getElementById(outstandingAmt);
+            var outstandingAmount = parseFloat(outstanding.innerHTML);
+            
+            var totalAllocated = $('[id$=TotalAllocateId]');
+            var totalAllocatedAmount = parseFloat(totalAllocated.text());
+            
+            var totalAvailableToAllocate = $('[id$=TotalAvailableToAllocatedId]') ;
+            var totalAvailableToAllocateAmount = parseFloat(totalAvailableToAllocate.text());
+            
+            if(chckbox.checked){
+                allocate.disabled = false;
+                
+                if(totalAvailableToAllocateAmount + outstandingAmount < 0 ){
+                    allocate.value = outstandingAmount;
+                    outstanding.innerHTML = 0.0;
+                }else{
+					if( outstandingAmount < 0 ){
+                        allocate.value = totalAvailableToAllocateAmount;
+                    	outstanding.innerHTML = outstandingAmount - totalAvailableToAllocateAmount;
+                    }else{
+                        allocate.value = -1*totalAvailableToAllocateAmount;
+                    	outstanding.innerHTML = outstandingAmount + totalAvailableToAllocateAmount;	
+                    }
+                }
+                
+                totalAvailableToAllocate.text( totalAvailableToAllocateAmount + parseFloat(allocate.value) );
+                totalAllocated.text( totalAllocatedAmount + parseFloat(allocate.value) );
+                
+                allocate.focus();
+            }else{
+                $('[id$=AllocationError]').hide();
+            	allocate.disabled = true;
+                
+                outstanding.innerHTML = outstandingAmount + parseInt(allocate.value);
+                
+                totalAvailableToAllocate.text(totalAvailableToAllocateAmount - parseFloat(allocate.value) );
+                totalAllocated.text( parseFloat(totalAllocated.text()) - parseFloat(allocate.value) );
+                
+                allocate.value = 0.0;
+            }
+            
+            if( parseFloat(allocate.value) < 0){allocate.style.color="red";}else{allocate.style.color="black";}
+            if( parseFloat(outstanding.innerHTML) < 0){outstanding.style.color="red";}else{outstanding.style.color="black";}
+            if( parseFloat(totalAllocated.text()) < 0){totalAllocated.style.color="red";}else{totalAllocated.style.color="black";}
+            if( parseFloat(totalAvailableToAllocate.text()) < 0){totalAvailableToAllocate.style.color="red";}else{totalAvailableToAllocate.style.color="black";}
+        }
+        
+        function updateOutstanding(oldValue, allocate, outstandingAmt, totalAmt, paidAmt){
+            var allocateAmount = parseFloat(allocate.value);
+            
+            var outstanding = document.getElementById(outstandingAmt);            
+            var oustandingAmount = parseFloat(document.getElementById(totalAmt).innerHTML) 
+                	+ parseFloat(document.getElementById(paidAmt).innerHTML);
+            
+            var totalAllocated = $('[id$=TotalAllocateId]');
+            var totalAllocatedAmount = parseFloat(totalAllocated.text());
+            
+            var totalAvailableToAllocate = $('[id$=TotalAvailableToAllocatedId]') ;
+            var totalAvailableToAllocateAmount = parseFloat(totalAvailableToAllocate.text());
+            
+        	if( isNaN(allocateAmount) 
+               || (Math.abs(allocateAmount) > Math.abs(oustandingAmount))
+               || ((oustandingAmount > 0) && (allocateAmount < 0) ) 
+               || (oustandingAmount < 0 && allocateAmount > 0) 
+               || (totalAvailableToAllocateAmount - oldValue + allocateAmount > 0) ) {
+                allocate.value = oldValue;
+                $('[id$=AllocationError]').show();
+            }else{
+            	$('[id$=AllocationError]').hide();
+            }
+            
+            outstanding.innerHTML = oustandingAmount - parseFloat(allocate.value);
+            totalAllocated.text( totalAllocatedAmount - parseFloat(oldValue) + parseFloat(allocate.value) );
+            totalAvailableToAllocate.text( totalAvailableToAllocateAmount - parseFloat(oldValue) + parseFloat(allocate.value) );
+          	
+            if( parseFloat(allocate.value) < 0){allocate.style.color="red";}else{allocate.style.color="black";}
+            if( parseFloat(outstanding.innerHTML) < 0){outstanding.style.color="red";}else{outstanding.style.color="black";}
+            if( parseFloat(totalAllocated.text()) < 0){totalAllocated.style.color="red";}else{totalAllocated.style.color="black";}
+            if( parseFloat(totalAvailableToAllocate.text()) < 0){totalAvailableToAllocate.style.color="red";}else{totalAvailableToAllocate.style.color="black";}            
+        }
+        </script>
+    </head>
+    
+    <body>
+        <apex:form >
+            <!-- Page Headers and buttons -->
+            <div class="container-fluid header"><h3>{!$Label.Unpaid_Billing_Statements}</h3></div>
+            <div class="container-fluid menu-bar">
+                <div class="container">
+                    <div class="row text-center">
+                        <apex:outputLabel value="{!$Label.Add_Manual_Payment}" styleClass="col-xs-9"/>                        
+                        <apex:commandButton id="confirmbtn" value="{!$Label.Confirm}" styleClass="btn btn-primary" style="margin:0px 10px"/>
+                        <apex:commandButton id="cancelbtn" value="{!$Label.Cancel}"  styleClass="btn btn-default"/>
+                    </div>
+                </div>
+            </div>
+            
+            <br />
+            
+            <apex:pageBlock >
+                <apex:pageBlockSection columns="12">
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel for="PaymentAmountId" value="{!$Label.Payment_Amount}"/>
+                        <apex:inputText id="PaymentAmountId" value="{!PaymentAmount}"/>
+                    </apex:pageBlockSectionItem>
+                   	
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel for="TotalAllocateId" value="{!$Label.Allocated}"/>
+                        <apex:outputText id="TotalAllocateId" value="{!TotalAllocated}"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel for="TotalAvailableToAllocatedId" value="{!$Label.Available_To_Allocate}"/>
+                        <apex:outputText id="TotalAvailableToAllocatedId" value="{!TotalAvailableToAllocate}"/>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+            
+            <div id="PaymentError" class="alert alert-danger text-center">{!$Label.Payment_Error}</div>
+			<div id="AllocationError" class="alert alert-warning text-center">{!$Label.Allocation_Error}</div>            
+            
+            <apex:pageBlock >
+                <apex:pageBlockTable columns="6" id="bsTable" styleClass="container"
+                                     value="{!PositiveTotalBillingStatements}" var="statement">
+                    <apex:column headerValue="{!$Label.Receivable}"
+                                 value="{!statement.billingStatement.Name}"
+                                 styleClass="col-sm-2"/>
+                    
+                    <apex:column headerValue="{!$Label.Total}" styleClass="col-sm-2">
+                        <apex:outputText style="color:{!if(statement.billingStatement.Total_Amount__c < 0, 'Red', 'Black')}"
+                                         id="PositiveTotalBillingStatement" value="{!statement.billingStatement.Total_Amount__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.Receivable}" styleClass="col-sm-2">
+                        <apex:outputText style="color:{!if(statement.billingStatement.Paid_Amount__c < 0, 'Red', 'Black')}"
+                                         id="NegativeTotalPaidBillingStatement" value="{!statement.billingStatement.Paid_Amount__c}"/>
+                    </apex:column>
+                    
+                    <apex:column headerValue="{!$Label.Outstanding}" styleClass="col-sm-2">
+                        <apex:outputText style="color:{!if(statement.outstanding < 0, 'Red', 'Black')}"
+                                         id="PositiveOutstanding" value="{!statement.outstanding}"/>
+                    </apex:column>
+                    
+                    <apex:column headerValue="{!$Label.SelectLabel}" styleClass="col-sm-2">
+                        <apex:inputCheckbox value="{!statement.selected}" id="PositiveStatementSelected"
+                                            onchange="populateBillingStatement(this, '{!$Component.PositiveAllocateInput}', '{!$Component.PositiveOutstanding}')"/>
+                    </apex:column>
+                    
+                    <apex:column headerValue="{!$Label.Allocated}" styleClass="col-sm-2">
+                        <apex:inputText value="{!statement.allocate}" disabled="true"  id="PositiveAllocateInput"
+                        onfocus="this.oldValue = this.value"
+                        onblur="updateOutstanding(this.oldValue, this, '{!$Component.PositiveOutstanding}', '{!$Component.PositiveTotalBillingStatement}', '{!$Component.NegativeTotalPaidBillingStatement}')"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+            
+            <apex:pageBlock > 
+                <apex:pageBlockTable value="{!NegativeTotalBillingStatements}" var="statement"
+                                     columns="6" styleClass="container">
+                    <apex:column headerValue="{!$Label.Payable_Credit_Notes}" value="{!statement.billingStatement.Name}"
+                                 styleClass="col-sm-2"/>
+                    
+                    <apex:column headerValue="{!$Label.Total}" styleClass="col-sm-2">
+                        <apex:outputText style="color:{!if(statement.billingStatement.Total_Amount__c < 0, 'Red', 'Black')}"
+                                         id="NegativeTotalBillingStatement" value="{!statement.billingStatement.Total_Amount__c}" />
+                    </apex:column>
+                    
+                    <apex:column headerValue="{!$Label.Received}" styleClass="col-sm-2">
+                        <apex:outputText style="color:{!if(statement.billingStatement.Paid_Amount__c < 0, 'Red', 'Black')}"
+                                         id="PositiveTotalPaidBillingStatement" value="{!statement.billingStatement.Paid_Amount__c}"/>
+                    </apex:column>
+                    
+                    <apex:column headerValue="{!$Label.Outstanding}" styleClass="col-sm-2">
+                        <apex:outputText style="color:{!if(statement.outstanding < 0, 'Red', 'Black')}"
+                                         id="NegativeOutstanding" value="{!statement.outstanding}"/>
+                    </apex:column>
+                    
+                    <apex:column headerValue="{!$Label.SelectLabel}" styleClass="col-sm-2">
+                        <apex:inputCheckbox value="{!statement.selected}" id="statementSelected"
+                                            onchange="populateBillingStatement(this, '{!$Component.NegativeAllocateInput}', '{!$Component.NegativeOutstanding}')"/>
+                    </apex:column>
+                    
+                    <apex:column headerValue="{!$Label.Allocated}" styleClass="col-sm-2">
+                        <apex:inputText id="NegativeAllocateInput" value="{!statement.allocate}"  disabled="true" 
+                        onfocus="this.oldValue = this.value"                
+                        onblur="updateOutstanding(this.oldValue ,this, '{!$Component.NegativeOutstanding}', '{!$Component.NegativeTotalBillingStatement}', '{!$Component.PositiveTotalPaidBillingStatement}')"/>
+                    </apex:column>                    
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+        </apex:form>
+    </body>
+</apex:page>
