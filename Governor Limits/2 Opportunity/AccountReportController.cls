@@ -1,30 +1,25 @@
 public class AccountReportController {
     public String name {get;set;}
     public integer quantity {get;set;}
+    
+    public AccountReportController(){}
 
-    public AccountReportController(string n,integer q){
-        this.quantity=q;
-        this.name=n;
+    public AccountReportController(string name,integer quantity){
+        this.quantity = quantity;
+        this.name = name;
     }
-    
-    public AccountReportController(ApexPages.StandardController controller){
-    }
-    
-    public List<AccountReportController> assetList = new List<AccountReportController>();
     
     public List<AccountReportController> getAccounts(){
-        List<AggregateResult>  ag = [
-            SELECT Account.Name name, 
-            	SUM(Amount) quantity
-            FROM Opportunity 
-            GROUP BY Account.Name
-            LIMIT 10
-        ];
+        List<AccountReportController> listOfAccounts = new List<AccountReportController>();
+        List<AggregateResult> listOfAccountOpportunities = AccountDAO.getAccountOpportunities();
         
-        for(AggregateResult resultList :ag){
-            assetList.add( new AccountReportController(String.valueOf(resultList.get('name')),integer.valueOf(resultList.get('quantity'))) );
+        for(AggregateResult account :listOfAccountOpportunities){
+            listOfAccounts.add(
+               new AccountReportController(
+               String.valueOf(account.get('AccountName')),
+               Integer.valueOf(account.get('SumOfOpportunity'))) );
         }
         
-        return assetList;
+        return listOfAccounts;
     }
 }

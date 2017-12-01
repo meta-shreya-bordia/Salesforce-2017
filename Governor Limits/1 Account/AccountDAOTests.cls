@@ -1,19 +1,14 @@
-@isTest
-class AccountDAOTests {
-	static final Integer noOfAccounts = 2;
+@isTest class AccountDAOTests {
+    static final Integer noOfAccounts = 2;
     static final Integer noOfContacts = 3;
-    static final Integer noOfOpportunities = 4;
-    
+    static final Integer noOfOpportunities = 4;    
     static final Decimal TEST_AMOUNT = 20.00;
     static final Date TEST_DATE = System.today();
-    
     static final String TEST_NAME = 'Test';
     static final String TEST_BILLING_CITY = 'City';
     static final String TEST_BILLING_STATE = 'State';
     static final String TEST_BILLING_COUNTRY = 'Country';
-    
     static final String TEST_STAGE = 'Prospecting';
-    static final String ERROR_MSG = 'Account does not contain required records';
 
     static List<Contact> getContacts(){
         return [
@@ -29,7 +24,6 @@ class AccountDAOTests {
             WHERE Name LIKE :TEST_NAME+'%'
         ];
     }
-    
     static List<Opportunity> getOpportunities(){
         return [
             SELECT Id, Amount
@@ -37,21 +31,20 @@ class AccountDAOTests {
         ];
     }
     
-    @testSetup
-    static void setup(){
+    @testSetup static void setup(){
         List<Account> listOfAccounts = new List<Account>();
         for(Integer index = 0; index < noOfAccounts; index++){
             Account account = new Account(
-                Name=TEST_NAME+index,
-            	BillingCity = TEST_BILLING_CITY,
-            	BillingState = TEST_BILLING_STATE,
-            	BillingCountry = TEST_BILLING_COUNTRY);
+                Name = TEST_NAME + index,
+                BillingCity = TEST_BILLING_CITY,
+                BillingState = TEST_BILLING_STATE,
+                BillingCountry = TEST_BILLING_COUNTRY);
             listOfAccounts.add(account);
         }
         insert listOfAccounts;
         
         List<Contact> listOfContacts = new List<Contact>();
-        for(Integer index=0; index<noOfContacts; index++){
+        for(Integer index = 0; index < noOfContacts; index++){
             Contact contact = new Contact(
                 LastName=TEST_NAME+index,
                 AccountId = listOfAccounts[0].Id );
@@ -72,8 +65,7 @@ class AccountDAOTests {
         insert listOfOpportunities;
     }
     
-    @isTest
-    static void testgetRelatedContactsReturnsListOfAccountsContact(){
+    @isTest static void testGetRelatedContactsShouldReturnListOfAccountsContact(){
         List<Account> listOfTestAccounts = getAccounts();
             
         Test.startTest();
@@ -83,11 +75,10 @@ class AccountDAOTests {
         Integer expected = noOfContacts;
         Integer actual = account.contacts.size();
         
-        System.assertEquals( expected, actual, ERROR_MSG );
+        System.assertEquals( expected, actual, 'Account has returned '+noOfContacts+' records' );
     }
     
-    @isTest
-    static void testgetAccountFromContactReturnsAccountWithContact(){
+    @isTest static void testGetAccountFromContactShouldReturnAccountWithContact(){
         List<Contact> listOfContacts = getContacts();
             
         Test.startTest();
@@ -97,11 +88,10 @@ class AccountDAOTests {
         Integer expected = noOfContacts;
         Integer actual = account.contacts.size();
         
-        System.assertEquals( expected, actual, ERROR_MSG );
+        System.assertEquals( expected, actual, 'Account has returned '+noOfContacts +' records' );
     }
     
-    @isTest
-    static void testgetByBillingAddressReturnsAccountsOrderedByBillingAddress(){
+    @isTest static void testGetByBillingAddressShouldReturnAccountsOrderedByBillingAddress(){
         String whereClause = 'where billingCity = \'' +TEST_BILLING_CITY
             +'\' AND billingState = \'' +TEST_BILLING_STATE
             +'\' AND billingCountry = \'' +TEST_BILLING_COUNTRY +'\'';
@@ -113,8 +103,8 @@ class AccountDAOTests {
         Integer expected = noOfAccounts;
         Integer actual = listOfAccounts.size();
         
-        System.assertEquals( expected, actual, ERROR_MSG );
-    }
+        System.assertEquals( expected, actual, 'Account must return '+noOfAccounts+' records' );
+    } 
     
     @isTest static void testGetAccountOpportunitiesShouldReturnAggregateOfAllChildOpportunityAmount(){
         Test.startTest();
@@ -124,6 +114,6 @@ class AccountDAOTests {
         Decimal expected = noOfOpportunities*TEST_AMOUNT;
         Decimal actual = (Decimal)listOfAccounts[0].get('SumOfOpportunity');
         
-        System.assertEquals( expected, actual, ERROR_MSG );
+        System.assertEquals( expected, actual, 'Account must return sum of all account opportunity');
     }
 }

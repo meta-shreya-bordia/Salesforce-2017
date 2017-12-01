@@ -18,7 +18,7 @@ public class Accounts extends fflib_SObjectDomain {
     }
     
     public override void onAfterUpdate(Map<Id,SObject> existingRecords) {
-    	updateChildCount();
+        updateChildCount();
     }
     
     void updateChildCount(){
@@ -27,12 +27,11 @@ public class Accounts extends fflib_SObjectDomain {
             listofAccounts.add( account.Parent_Account__c ); 
         }
         
-        List<Account> listOfParentAccounts = 
-            AccountDAO.getAccountsParentAccountDetails(listOfAccounts);
+        List<Account> listOfParentAccounts = AccountDAO.getAccountsParentAccountDetails(listOfAccounts);
         
         for(Account parentAccount :listOfParentAccounts){
-           parentAccount.Child_Count__c = parentAccount.Accounts__r.size();
-		}
+            parentAccount.Child_Count__c = parentAccount.Accounts__r.size();
+	    }
         
         update listOfParentAccounts;
     }
