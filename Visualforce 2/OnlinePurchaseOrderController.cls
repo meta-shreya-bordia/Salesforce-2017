@@ -1,6 +1,5 @@
 public class OnlinePurchaseOrderController {
     private final Integer SIZE = 10;
-    
     public String searchTerm {get; set;}
     public PurchaseOrder__c order{get; set;}
     public Boolean renderProductList{get; set;}
@@ -59,7 +58,7 @@ public class OnlinePurchaseOrderController {
     	if(filterCategory != ''){
             List<PurchaseOrderLineItem__c> listOfPurchaseOrderLineItem = new List<PurchaseOrderLineItem__c>();
             List<Product__c> listOfProducts = 
-			    ProductDAO.getProductByCategory(mapOfOrderLineItems.keySet(), filterCategory );
+	        ProductDAO.getProductByCategory(mapOfOrderLineItems.keySet(), filterCategory );
             
             for(Product__c product :listOfProducts){
                 if( mapOfOrderLineItems.containsKey( product.Id ) ){
