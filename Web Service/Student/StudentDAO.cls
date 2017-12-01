@@ -2,7 +2,7 @@ public class StudentDAO implements IStudentDAO {
 
     public interface IStudentDAO{
         Map<Id, Student__c> getStudentDetails();
-   	List<Student__c> getStudentDetails(String searchPattern);
+        List<Student__c> getStudentDetails(String searchPattern);
         List<Student__c> getStudentByClass(String searchPattern);
         List<Student__c> getStudentByClass(List<Student__c> listOfStudents);
         List<Student__c> getStudentByClassId(Id classId);
@@ -12,16 +12,14 @@ public class StudentDAO implements IStudentDAO {
     
     public static Map<Id, Student__c> getStudentDetails(){
     	return new Map<Id, Student__c>([
-            SELECT Id, Name, First_Name__c, Last_Name__c,
-                DOB__c, Sex__c, Class__r.Name
+            SELECT Id, Name, First_Name__c, Last_Name__c, DOB__c, Sex__c, Class__r.Name
             FROM Student__c
         ]);    
     }    
         
     public static List<Student__c> getStudentDetails(String searchPattern) {
         return [
-            SELECT Id, First_Name__c, Last_Name__c,
-            	DOB__c, Sex__c, Class__r.Name
+            SELECT Id, First_Name__c, Last_Name__c, DOB__c, Sex__c, Class__r.Name
             FROM Student__c
             WHERE Last_Name__c LIKE :searchPattern 
         ]; 
@@ -63,7 +61,9 @@ public class StudentDAO implements IStudentDAO {
         List<Id> listofClassIds = ClassDAO.getClassBySubject();
         
     	return [
-            SELECT First_Name__c, Last_Name__c, Class__r.Name
+            SELECT First_Name__c, 
+                Last_Name__c,
+                Class__r.Name
             FROM Student__c
             WHERE Class__c IN :listofClassIds
         ];        

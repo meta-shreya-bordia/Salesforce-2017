@@ -17,11 +17,11 @@
         
         <apex:pageBlock id="StudentDetails" rendered="{!renderDetails}">
             <apex:pageBlockSection >
-                <apex:outputField label="First Name" value="{!selectedStudent.First_Name__c}" />
-                <apex:outputField label="Last Name" value="{!selectedStudent.Last_Name__c}" />
-                <apex:outputField label="Class" value="{!selectedStudent.Class__c}" />
-                <apex:outputField label="Sex" value="{!selectedStudent.Sex__c}" />
-                <apex:outputField label="Date Of Birth" value="{!selectedStudent.DOB__c}" />    
+                <apex:outputField label="{!$Label.First_Name}" value="{!selectedStudent.First_Name__c}" />
+                <apex:outputField label="{!$Label.Last_Name}" value="{!selectedStudent.Last_Name__c}" />
+                <apex:outputField label="{!$Label.ClassLabel}" value="{!selectedStudent.Class__c}" />
+                <apex:outputField label="{!$Label.Sex}" value="{!selectedStudent.Sex__c}" />
+                <apex:outputField label="{!$Label.Date_Of_Birth}" value="{!selectedStudent.DOB__c}" />    
             </apex:pageBlockSection>
         </apex:pageBlock>
     </apex:form>

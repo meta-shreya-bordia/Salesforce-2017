@@ -3,11 +3,9 @@
     static final Integer noOfStudents = 5;
     static final Integer noOfTeachers = 3;
     static final Integer noOfTeaches = 3;
-    
-    static final Date TEST_DATE = System.today();
+    static final Date TEST_DATE = Date.newInstance(1999, 2, 2);
     static final String TEST_NAME = 'Test';
     static final String TEST_SUBJECT = 'Hindi';
-    static final String ERROR_MSG = 'Query does not return expected number of records';
     
     static List<Class__c> getClasses(){
         return [
@@ -16,6 +14,7 @@
             WHERE Name LIKE :TEST_NAME+'%'
         ];
     }
+    
     static List<Student__c> getStudents(){
         return [
             SELECT Id
@@ -24,10 +23,9 @@
         ];
     }
    
-    @testSetup
-    static void setup(){
+    @testSetup static void setup(){
         List<Class__c> listOfClasses = new List<Class__c>();
-        for(Integer index=0; index< noOfClasses; index++){
+        for(Integer index = 0; index < noOfClasses; index++){
             Class__c cls = new Class__c(Name = TEST_NAME+index);
             listOfClasses.add(cls);
         }
@@ -46,11 +44,12 @@
         insert listOfStudents;
         
         List<Contact> listOfTeachers = new List<Contact>();
-        for(Integer index=0; index < noOfTeachers; index++){
+        for(Integer index = 0; index < noOfTeachers; index++){
         	Contact classTeacher = new Contact(
                 FirstName = TEST_NAME + index,
-            	LastName = TEST_NAME + index,
-            	Subjects__c = TEST_SUBJECT);
+                LastName = TEST_NAME + index,
+                Subjects__c = TEST_SUBJECT);
+            
             listOfTeachers.add(classTeacher);
         }
         insert listOfTeachers;
@@ -59,90 +58,83 @@
         for(Integer index = 0; index < noOfTeaches; index++){
             Teach__c classSubject = new Teach__c(
                 Subject__c = TEST_SUBJECT,
-            	Teacher__c = listOfTeachers[0].Id,
-                Class__c = listOfClasses[index].Id
-            );
+                Teacher__c = listOfTeachers[0].Id,
+                Class__c = listOfClasses[index].Id);
+            
             listOfTeaches.add(classSubject);
         }
         insert listOfTeaches;
     }
     
-    @isTest static void testGetStudentDetailsReturnsStudentsBySearchField(){
+    @isTest static void testGetStudentDetailsShouldReturnStudentsBySearchField(){
         Test.startTest();
-        	List<Student__c> listOfStudents = StudentDAO.getStudentDetails(TEST_NAME);
+            List<Student__c> listOfStudents = StudentDAO.getStudentDetails(TEST_NAME);
         Test.stopTest();
         
         Integer expected = noOfStudents;
         Integer actual = listOfStudents.size();
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Should Return List Of Student By Search Field');
     }
     
-    @isTest static void testGetStudentByClassReturnsStudentsByClassSearchField(){
+    @isTest static void testGetStudentByClassShouldReturnStudentsByClassSearchField(){
         Test.startTest();
-        	List<Student__c> listOfStudents = StudentDAO.getStudentByClass(TEST_NAME);
+            List<Student__c> listOfStudents = StudentDAO.getStudentByClass(TEST_NAME);
         Test.stopTest();
         
         Integer expected = noOfStudents;
         Integer actual = listOfStudents.size();
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Should Return Students By Class Search Field');
     }
     
-    @isTest static void testGetStudentByClassReturnsStudentsClasses(){
+    @isTest static void testGetStudentByClassShouldReturnStudentsFromClasses(){
         List<Student__c> listOfTestStudents = getStudents();
         
         Test.startTest();
-        	List<Student__c> listOfStudents = StudentDAO.getStudentByClass(listOfTestStudents);
+            List<Student__c> listOfStudents = StudentDAO.getStudentByClass(listOfTestStudents);
         Test.stopTest();
         
         Integer expected = noOfStudents;
         Integer actual = listOfStudents.size();
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Should Return Students by their Classes');
     }
-    
-	/*1. all names of the students in that class as a list.*/
-    @isTest
-    static void testClassStudents(){
+
+    @isTest static void testGetStudentByClassIdShouldReturnStudentsInAClassById(){
         List<Class__c> listOfClasses = getClasses();
 
 		Test.startTest();
-        	List<Student__c> listOfStudents = 
-            	StudentDAO.getStudentByClassId(listOfClasses[0].Id);
+            List<Student__c> listOfStudents = StudentDAO.getStudentByClassId(listOfClasses[0].Id);
         Test.stopTest();
         
         Integer expected = noOfStudents;
         Integer actual = listOfStudents.size();
         
-        System.assertEquals(expected, actual, ERROR_MSG );
+        System.assertEquals(expected, actual, 'Should return students from a class' );
     }
     
-    @isTest
-    static void testGetByDOBReturnsStudentsBySearchYear(){
+    @isTest static void testGetByDOBShouldReturnStudentsBySearchedYear(){
         Test.startTest();
-        	List<Student__c> listOfStudents = 
-            	StudentDAO.getByDOB( TEST_DATE.year() );
+            List<Student__c> listOfStudents = StudentDAO.getByDOB( TEST_DATE.year() );
         Test.stopTest();
         
         Integer expected = noOfStudents;
         Integer actual = listOfStudents.size();
         
-        System.assertEquals(expected, actual, ERROR_MSG );
+        System.assertEquals(expected, actual, 'Should return students by their birth year' );
     }
     
-    @isTest
-    static void testGetStudentsBySubjectReturnsStudentsStudyingSubjects(){
+    @isTest static void testGetStudentsBySubjectShouldReturnStudentsStudyingSubjects(){
         List<Class__c> listOfClasses = getClasses();
 
 		Test.startTest();
-        	List<Student__c> listOfStudents = 
-            	StudentDAO.getStudentsBySubject();
+            List<Student__c> listOfStudents = StudentDAO.getStudentsBySubject();
         Test.stopTest();
         
         Integer expected = noOfStudents;
         Integer actual = listOfStudents.size();
         
-        System.assertEquals(expected, actual, ERROR_MSG );
+        System.assertEquals(expected, actual, 'Should return students by subjects taught to them' );
     }	
 }
