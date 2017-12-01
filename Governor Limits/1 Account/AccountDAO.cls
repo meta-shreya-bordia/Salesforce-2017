@@ -9,8 +9,7 @@ public class AccountDAO implements IAccountDAO {
         
     public static Account getRelatedContacts(Id accountId){
         return [
-            SELECT Id, ContactIDs__c,
-                Number_of_Contacts__c,
+            SELECT Id, ContactIDs__c, Number_of_Contacts__c,
                (SELECT Id, Name
                FROM Contacts)
             FROM Account
@@ -31,10 +30,10 @@ public class AccountDAO implements IAccountDAO {
     public static Account getAccountFromContact(Id contactId){
         return [
             SELECT Id, ContactIDs__c,
-		        (SELECT Id 
+		(SELECT Id 
                 FROM Contacts)
-			FROM Account
-			WHERE Id IN 
+            FROM Account
+            WHERE Id IN 
                 (SELECT AccountId
                 FROM Contact
                 WHERE Id = :contactId)
