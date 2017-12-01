@@ -1,8 +1,7 @@
-<apex:page standardController="Student__c" extensions="EditStudentNameExtension">
+<apex:page standardController="Student__c">
 
     <script type="text/javascript"> 
     	var closeWindow = function () {
-            
             window.opener.location.href = "/{!$CurrentPage.parameters.Id}";
             window.top.close();
         }; 
@@ -16,8 +15,8 @@
             </apex:pageBlockSection>
             
             <apex:pageBlockButtons >
-                <apex:commandButton action="{! quickSave }" value="{!SaveLabel}" oncomplete="closeWindow()"/>
-                <apex:commandButton action="{!cancel}" value="{!CancelLabel}" oncomplete="closeWindow()"/>
+                <apex:commandButton action="{! quickSave }" value="{!$Label.Save}" oncomplete="closeWindow()"/>
+                <apex:commandButton action="{!cancel}" value="{!$Label.Cancel}" oncomplete="closeWindow()"/>
             </apex:pageBlockButtons>
         </apex:pageBlock>
     </apex:form>
