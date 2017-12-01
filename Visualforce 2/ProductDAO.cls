@@ -9,8 +9,7 @@ public class ProductDAO implements IProductDAO {
     
     public static Map<Id, Product__c> getAllProductDetails(){
         return new Map<Id, Product__c>( [
-            SELECT Id, ProductCode__c, UnitPrice__c,
-                Name, Category__c
+            SELECT Id, ProductCode__c, UnitPrice__c, Name, Category__c
             FROM Product__c
         ]);
     }
@@ -18,8 +17,7 @@ public class ProductDAO implements IProductDAO {
     public static List<Product__c> getAllProductDetails(
         Map<Id, Product__c> mapOfProducts, String searchTerm){
         return [
-            SELECT Id, ProductCode__c, UnitPrice__c,
-                Name, Category__c
+            SELECT Id, ProductCode__c, UnitPrice__c, Name, Category__c
             FROM Product__c
             WHERE Name LIKE :searchTerm+'%'
                 AND Id IN :mapOfProducts.keySet()
@@ -35,7 +33,7 @@ public class ProductDAO implements IProductDAO {
         ];
         
         for(Product__c product :listOfProducts){
-        	setOfCategories.add(product.Category__c);
+            setOfCategories.add(product.Category__c);
         }
         
         return new List<String>( setOfCategories );
@@ -45,10 +43,9 @@ public class ProductDAO implements IProductDAO {
         Set<Id> setOfIds, String searchCategory){
         
         return [
-            SELECT Id, ProductCode__c, UnitPrice__c,
-                Name, Category__c
+            SELECT Id, ProductCode__c, UnitPrice__c, Name, Category__c
             FROM Product__c 
-			WHERE Category__c = :searchCategory
+	    WHERE Category__c = :searchCategory
             	AND Id IN :setOfIds
         ];
     }
