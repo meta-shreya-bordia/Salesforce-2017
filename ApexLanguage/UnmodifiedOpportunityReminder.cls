@@ -1,19 +1,16 @@
 global class UnmodifiedOpportunityReminder implements Schedulable{
-	
-    global void execute(SchedulableContext ctx) {
-        OpportunityDAO opportunityDAO = new OpportunityDAO();
-        
-        List<Opportunity> listOfOpportunities = 
-            opportunityDAO.getUnmodifiedOpportunities();
+    global void execute(SchedulableContext context) {
+      	List<Opportunity> listOfOpportunities = 
+            OpportunityDAO.getUnmodifiedOpportunities();
 
-        List<String> emailAddresses = new List<String>();
-        
-        for(Opportunity opp :listOfOpportunities){
-            emailAddresses.add( opp.Owner.Email );
-        }    
-        
-     	BulkEmailManager.sendEmail(emailAddresses,
-            'Unmodified Opporunity',
-            'Hello, Your opporunity has not been modified from past 30 days');
+        if( listOfOpportunities != null && listOfOpportunities.size() > 0 ){
+            for(Opportunity opportunity :listOfOpportunities){
+                EmailService.sendMail( opportunity.Owner.Email, 
+                    OpportunityConstants.UNMODIFIED_OPPORTUNITY,
+                    OpportunityConstants.UNMODIFIED_OPPORTUNITY_BODY);
+            }    
+            
+
+        }
     }
 }
