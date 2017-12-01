@@ -20,7 +20,7 @@ public class ObjectListController {
         get {
             if( fieldsString == '' ){
                 for(String field :listOfFieldNames){
-            		fieldsString += field+',';
+            	    fieldsString += field+',';
                 }
                 fieldsString = fieldsString.removeEnd(',');
         	}
@@ -47,8 +47,7 @@ public class ObjectListController {
     public ApexPages.StandardSetController controller {
        get {
            if(controller == null) {
-               controller = new ApexPages.StandardSetController(
-					sObjectDAO.getObjects(fieldsString, queryObject));
+               controller = new ApexPages.StandardSetController(sObjectDAO.getObjects(fieldsString, queryObject));
                controller.setPageSize(size);  
            }         
            return controller;
