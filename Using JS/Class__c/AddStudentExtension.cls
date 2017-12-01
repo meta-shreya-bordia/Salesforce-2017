@@ -1,6 +1,4 @@
 public class AddStudentExtension {
-    public String Add_Student {get { return Label.Add_Student; }}
-    public String Cancel {get { return Label.Cancel; }}
     public Student__c student {get; set;}
         
     public AddStudentExtension(ApexPages.StandardController stdController) {
