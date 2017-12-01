@@ -77,7 +77,7 @@
         Id expected = opportunityId;
         Id actual = opportunity.Id;
         
-		System.assertEquals(expected, actual, 'Should Return All Opportunity Details');        
+	System.assertEquals(expected, actual, 'Should Return All Opportunity Details');        
     }
     
     @isTest static void testGetRelatedOpportunityLineItemShouldReturnRelatedProductsOfEachOpportunity(){
@@ -90,7 +90,7 @@
         Integer expected = noOfOpportunityLineItems;
         Integer actual = listOfOpportunityLineItems[0].OpportunityLineItems.size();
         
-		System.assertEquals(expected, actual, 'Should Return Related Products Of Each Opportunity');        
+	System.assertEquals(expected, actual, 'Should Return Related Products Of Each Opportunity');        
     }
     
     @isTest static void testGetUnmodifiedOpportunitiesShouldReturnOpporunitiesUnModifiedForMoreThanThirtyDays(){
@@ -101,6 +101,6 @@
         Integer expected = 0;
         Integer actual = listOfOpportunities.size();
         
-		System.assertEquals(expected, actual, 'Should Return Opporunities UnModified For More Than Thirty Days');            
+	System.assertEquals(expected, actual, 'Should Return Opporunities UnModified For More Than Thirty Days');            
     }
 }
