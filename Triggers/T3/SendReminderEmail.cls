@@ -1,7 +1,7 @@
 global class SendReminderEmail implements Database.Batchable<sObject> {
     global String query;
-	global String subject;
-	global String body;
+    global String subject;
+    global String body;
     
     global SendReminderEmail(String query, String subject, String body) {
         this.query = query;
@@ -17,7 +17,7 @@ global class SendReminderEmail implements Database.Batchable<sObject> {
     	for (Speaker__c speaker : scope) {
             EmailService.sendMail(speaker.Email__c, this.subject, this.body);
     	}
-	}
+    }
 
 
     global void finish(Database.BatchableContext batchableContext) {
