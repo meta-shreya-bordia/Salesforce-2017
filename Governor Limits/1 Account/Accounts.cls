@@ -31,7 +31,7 @@ public class Accounts extends fflib_SObjectDomain {
         
         for(Account parentAccount :listOfParentAccounts){
             parentAccount.Child_Count__c = parentAccount.Accounts__r.size();
-	    }
+	}
         
         update listOfParentAccounts;
     }
