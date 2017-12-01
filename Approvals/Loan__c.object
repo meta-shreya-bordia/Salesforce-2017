@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -43,6 +43,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Bank loan details contains loan amount and bank manager.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -53,6 +54,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Address__c</fullName>
+        <description>Applicant&apos;s Home/Business address</description>
         <externalId>false</externalId>
         <label>Address</label>
         <required>false</required>
@@ -61,7 +63,9 @@
     </fields>
     <fields>
         <fullName>Amount__c</fullName>
+        <description>Required field entailing the loan amount taken from the bank.</description>
         <externalId>false</externalId>
+        <inlineHelpText>Loan amount to be taken</inlineHelpText>
         <label>Amount</label>
         <precision>18</precision>
         <required>true</required>
@@ -70,8 +74,33 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>City__c</fullName>
+        <fullName>Applicant_Email__c</fullName>
+        <description>Loan applicant&apos;s point of contact.</description>
         <externalId>false</externalId>
+        <inlineHelpText>Apllicant&apos;s Email address</inlineHelpText>
+        <label>Applicant Email</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Applicant_Name__c</fullName>
+        <description>Name of applicant applying for loan.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of applicant applying for loan.</inlineHelpText>
+        <label>Applicant Name</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>City__c</fullName>
+        <description>City in which loan is applied.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Applicant&apos;s city</inlineHelpText>
         <label>City</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -110,7 +139,9 @@
     <fields>
         <fullName>Manager__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Loan manager under which loan approval/rejected is handled.</description>
         <externalId>false</externalId>
+        <inlineHelpText>Loan managed by</inlineHelpText>
         <label>Manager</label>
         <referenceTo>CityManager__c</referenceTo>
         <relationshipLabel>Loan Manager</relationshipLabel>
@@ -121,13 +152,43 @@
     </fields>
     <fields>
         <fullName>Name__c</fullName>
+        <description>Loan Applicant&apos;s Name</description>
         <externalId>false</externalId>
-        <label>Name</label>
+        <inlineHelpText>Loan Applicant&apos;s Name</inlineHelpText>
+        <label>ApplicantName</label>
         <length>30</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Describes the loan pending/approved/rejected.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Loan review status</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pending</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <label>Loan</label>
     <listViews>
@@ -145,10 +206,8 @@
         <lookupDialogsAdditionalFields>Name__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Amount__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>City__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields xsi:nil="true"/>
         <searchFilterFields>Name__c</searchFilterFields>
         <searchFilterFields>Amount__c</searchFilterFields>
-        <searchFilterFields xsi:nil="true"/>
         <searchFilterFields>City__c</searchFilterFields>
         <searchResultsAdditionalFields>Name__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Amount__c</searchResultsAdditionalFields>

@@ -43,6 +43,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Bank manager responsible for loan processing, processed by city</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -53,13 +54,14 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>City__c</fullName>
+        <description>Place of bank</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter bank city</inlineHelpText>
         <label>City</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
-            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
@@ -92,7 +94,9 @@
     <fields>
         <fullName>Manager__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Person that manages the bank processes</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter manager name</inlineHelpText>
         <label>Manager</label>
         <referenceTo>User</referenceTo>
         <relationshipName>CityManagers</relationshipName>
