@@ -18,14 +18,13 @@ public class Loans extends fflib_SObjectDomain {
     }
 
     public void setCityManager(){
-        List<CityManager__c> listOfManagers =
-            CityManagerDAO.getManagerByCity();
+        List<CityManager__c> listOfManagers = CityManagerDAO.getManagerByCity();
         List<Loan__c> listOfLoans = (List<Loan__c>) Records;
         
         for(Loan__c loan :listOfLoans) {
             for(CityManager__c manager :listOfManagers){
-				if( loan.City__c == manager.City__c){
-                	loan.Manager__c = manager.Id;
+                if( loan.City__c == manager.City__c){
+                    loan.Manager__c = manager.Id;
             	}
             }
         }
