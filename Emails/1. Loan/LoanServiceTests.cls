@@ -10,7 +10,8 @@
     
     static list<Loan__c> getLoans(){
         return [
-            SELECT Id, Name__c, Amount__c, Manager__r.Name, Applicant_Name__c, Applicant_Email__c, Status__c
+            SELECT Id, Name__c, Amount__c, Manager__r.Name,
+                Applicant_Name__c, Applicant_Email__c, Status__c
             FROM Loan__c
         ];
     }
@@ -28,7 +29,7 @@
         List<Loan__c> listOfLoans = new List<Loan__c>();
         for(Integer index = 0; index< noOfLoans; index++){
             Loan__c loan = new Loan__c(
-           	    Name__c = TEST_NAME+index,
+                Name__c = TEST_NAME+index,
                 Manager__c = listOfCityManagers[0].Id,
                 City__c = TEST_CITY,
                 Applicant_Name__c = TEST_NAME,
