@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Add_Manual_Payment</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add_Manual_Payment</shortDescription>
+        <value>Add Manual Payment</value>
+    </labels>
+    <labels>
+        <fullName>Allocated</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Allocated</shortDescription>
+        <value>Allocated</value>
+    </labels>
+    <labels>
+        <fullName>Allocation_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Allocation_Error</shortDescription>
+        <value>Invalid Allocation Amount. Resetting to original value.</value>
+    </labels>
+    <labels>
+        <fullName>Available_To_Allocate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Available_To_Allocate</shortDescription>
+        <value>Available To Allocate</value>
+    </labels>
+    <labels>
+        <fullName>Cancel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>Confirm</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirm</shortDescription>
+        <value>Confirm</value>
+    </labels>
+    <labels>
+        <fullName>IdLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>IdLabel</shortDescription>
+        <value>Id</value>
+    </labels>
+    <labels>
+        <fullName>Invalid_Allocation</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Invalid_Allocation</shortDescription>
+        <value>Invalid Allocation</value>
+    </labels>
+    <labels>
+        <fullName>Outstanding</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Outstanding</shortDescription>
+        <value>O/S</value>
+    </labels>
+    <labels>
+        <fullName>Payable_Credit_Notes</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Payable_Credit_Notes</shortDescription>
+        <value>Payable Credit Notes</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Amount</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Payment_Amount</shortDescription>
+        <value>Payment Amount</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Payment_Error</shortDescription>
+        <value>Payment Amount Cannot Be Zero Or Positive</value>
+    </labels>
+    <labels>
+        <fullName>Receivable</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Receivable</shortDescription>
+        <value>Receivable</value>
+    </labels>
+    <labels>
+        <fullName>Received</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Received</shortDescription>
+        <value>Received</value>
+    </labels>
+    <labels>
+        <fullName>SelectLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SelectLabel</shortDescription>
+        <value>Select</value>
+    </labels>
+    <labels>
+        <fullName>Total</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Total</shortDescription>
+        <value>Total</value>
+    </labels>
+    <labels>
+        <fullName>Unpaid_Billing_Statements</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Unpaid Billing Statements</shortDescription>
+        <value>Billing Statements</value>
+    </labels>
+</CustomLabels>
