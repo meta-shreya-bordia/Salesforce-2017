@@ -8,8 +8,7 @@ public class ObjectListController {
         get{
             if(listOfFieldNames == null || listOfFieldNames.size() == 0){
                 listOfFieldNames = new List<String>(
-	            	Schema.getGlobalDescribe().get(queryObject).getDescribe()
-                    .fields.getMap().keySet() );
+                    Schema.getGlobalDescribe().get(queryObject).getDescribe().fields.getMap().keySet() );
             }
             
             return listOfFieldNames;
@@ -17,13 +16,13 @@ public class ObjectListController {
         set;
     }
     
-    public String fieldsString {
+   	private String fieldsString {
         get {
             if( fieldsString == '' ){
                 for(String field :listOfFieldNames){
             		fieldsString += field+',';
-	        	}
-            	fieldsString = fieldsString.removeEnd(',');
+                }
+                fieldsString = fieldsString.removeEnd(',');
         	}
             
         	return fieldsString;    
@@ -31,13 +30,8 @@ public class ObjectListController {
         set;
     }
 
-    private List<sObject> listOfSObjects;
-    private void setListOfSObjects(){
-        listOfSObjects = sObjectDAO.getObjects(fieldsString, queryObject);
-    }
-    
     public ObjectListController(){
-    	fieldsString = '';
+        fieldsString = '';
         sortOrder = '';
         size = 10;
     }
@@ -53,8 +47,8 @@ public class ObjectListController {
     public ApexPages.StandardSetController controller {
        get {
            if(controller == null) {
-               setListOfSObjects();
-               controller = new ApexPages.StandardSetController(listOfSObjects);
+               controller = new ApexPages.StandardSetController(
+					sObjectDAO.getObjects(fieldsString, queryObject));
                controller.setPageSize(size);  
            }         
            return controller;

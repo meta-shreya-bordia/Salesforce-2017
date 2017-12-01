@@ -6,21 +6,21 @@
         <apex:pageBlock id="object_list" title="{!queryObject}">
         	<apex:panelGrid columns="12"> 
                  <apex:commandButton status="fetchStatus" reRender="object_list"
-                 	value="First" action="{!controller.first}"
-                    disabled="{! !controller.hasPrevious}" title="First Page"/>      
+                 	value="{!$Label.First}" action="{!controller.first}"
+                    disabled="{! !controller.hasPrevious}"/>      
                  <apex:commandButton status="fetchStatus" reRender="object_list"
-                    value="Previous" action="{!controller.previous}"
-                    disabled="{! !controller.hasPrevious}" title="Previous Page"/>      
+                    value="{!$Label.Previous}" action="{!controller.previous}"
+                    disabled="{! !controller.hasPrevious}"/>      
                  <apex:commandButton status="fetchStatus" reRender="object_list"
-                    value="Next" action="{!controller.next}"
-                    disabled="{! !controller.hasNext}" title="Next Page"/> 
+                    value="{!$Label.Next}" action="{!controller.next}"
+                    disabled="{! !controller.hasNext}"/> 
                  <apex:commandButton status="fetchStatus" reRender="object_list"
-                    value="Last" action="{!controller.last}"
-                    disabled="{! !controller.hasNext}" title="Last Page"/>
-                 Page: <apex:outputText value=" {!controller.PageNumber} of 
+                    value="{!$Label.Last}" action="{!controller.last}"
+                    disabled="{! !controller.hasNext}"/>
+                 {!$Label.Page}: <apex:outputText value=" {!controller.PageNumber} of 
                     {! CEILING(controller.ResultSize / controller.PageSize) }"/>
                 
-                Records per page:
+                {!$Label.Records_per_page}:
                 <apex:selectList value="{!controller.PageSize}" size="1">
                     <apex:selectOption itemValue="5" itemLabel="5"/>
                     <apex:selectOption itemValue="10" itemLabel="10"/>
@@ -28,8 +28,8 @@
                     <apex:actionSupport event="onclick" reRender="object_list"/>
                 </apex:selectList>
            
-                <apex:inputText label="Go To" value="{!jumpToPage}" />
-                <apex:commandButton action="{!goToPage}" reRender="object_list" value="Go"/>
+                <apex:inputText label="{!$Label.Go_To}" value="{!jumpToPage}" />
+                <apex:commandButton action="{!goToPage}" reRender="object_list" value="{!$Label.Go_To}"/>
             </apex:panelGrid>
             
             <apex:pageBlockTable value="{!objectList}" var="object">
