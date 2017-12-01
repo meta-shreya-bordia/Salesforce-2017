@@ -3,16 +3,14 @@
         <script src="jquery-3.2.1.min.js"></script>
         <script>
             $(document).ready(function(){
-	            $('[id$=searchProducts]').on("keyup", function(){
+	        $('[id$=searchProducts]').on("keyup", function(){
     	            var searchTerm = $(this).val().toLowerCase();
-                    
-        	        $('[id$=productList]').filter(function(){
+                    $('[id$=productList]').filter(function(){
             	        $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) > -1)
+                    });
                 });
             });
-        });
         </script>
-        
     </head>
     
     <apex:form id="form">
@@ -34,7 +32,7 @@
                 </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
             
-    		<apex:pageBlockTable id="productList" title="{!$Label.Product_List}" value="{!products}" var="product">
+    	    <apex:pageBlockTable id="productList" title="{!$Label.Product_List}" value="{!products}" var="product">
                 <apex:column >
                     <apex:commandLink reRender="form, Cart" action="{!addToCart}">
                         <apex:image width="20" height="20"
