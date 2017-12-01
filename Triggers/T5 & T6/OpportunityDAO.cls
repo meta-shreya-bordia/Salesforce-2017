@@ -9,8 +9,8 @@ public class OpportunityDAO Implements IOpportunityDAO {
     public static List<Opportunity> getUnmodifiedOpportunities(){
         return [
             SELECT Id, Owner.Email, LastModifiedDate
-		    FROM Opportunity
-		    WHERE LastModifiedDate != LAST_N_DAYS:30
+            FROM Opportunity
+	    WHERE LastModifiedDate != LAST_N_DAYS:30
         ];
     }
     
