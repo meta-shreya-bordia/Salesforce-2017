@@ -77,7 +77,7 @@
         for(Integer index = 0; index < noOfProducts; index++){
             listOfProducts.add( new Product2(
                 Name = TEST_NAME+index,
-           	    isActive = true));
+           	isActive = true));
         }
         insert listOfProducts;
         
@@ -109,7 +109,7 @@
     }
 
     @isTest static void testUpdateOppCloseDateShouldUpdateCloseDateToTodayWhenStageIsClosed(){
-		List<Opportunity> listOfOpportunities = getOpportunities();
+        List<Opportunity> listOfOpportunities = getOpportunities();
         
         Test.startTest();
             update listOfOpportunities;
@@ -135,7 +135,7 @@
     }
     
     @isTest static void testUpdateAccountManagerShouldSetManagerFieldWithCorrespondingContactAccount(){
-		List<Opportunity> listOfOpportunities = getOpportunities();
+        List<Opportunity> listOfOpportunities = getOpportunities();
         
         Test.startTest();
             update listOfOpportunities;
