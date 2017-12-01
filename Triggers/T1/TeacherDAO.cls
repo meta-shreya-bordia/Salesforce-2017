@@ -9,7 +9,7 @@ public class TeacherDAO implements ITeacherDAO {
         return [
             SELECT FirstName, LastName, Subjects__c
             FROM Contact as Teacher
-         	WHERE Subjects__c INCLUDES(:allSubjects)
+            WHERE Subjects__c INCLUDES(:allSubjects)
         ];
     }
         
