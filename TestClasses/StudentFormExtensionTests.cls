@@ -4,12 +4,9 @@
     static final String CONTENT_TYPE = 'application/json';
     static final Blob TEST_BODY = Blob.valueOf( 'Attachment Body' );
     
-    static final String ERROR_MSG = 'Controller does not attach expected attachment';
-    
     static Student__c getStudent(){
         return [
-            SELECT Id,First_Name__c,
-            	Last_Name__c,Class__r.Name,
+            SELECT Id,First_Name__c, Last_Name__c,Class__r.Name,
             	(SELECT Id,Name
                 FROM Attachments)
             FROM Student__c
@@ -18,8 +15,7 @@
     }
 		    
     static StudentFormExtension getClassController(){
-        return new StudentFormExtension(
-            new ApexPages.StandardController( getStudent() ));
+        return new StudentFormExtension(new ApexPages.StandardController( getStudent() ));
     }
     
     @testSetup static void setup(){
@@ -46,24 +42,24 @@
         StudentFormExtension formExtension = getClassController();
         
         Test.startTest();
-        	formExtension.attach();
+            formExtension.attach();
         Test.stopTest();
         
         Id expected = getStudent().Attachments[0].Id;
         Id actual = formExtension.student.Attachments[0].Id;
         
-        System.assertNotEquals(expected, actual, ERROR_MSG);
+        System.assertNotEquals(expected, actual, 'Should attach new student details attachment to student record');
     }
     
     @isTest static void testAttachShouldRedirectToStudentDetailsPage(){
         StudentFormExtension formExtension = getClassController();
         
         Test.startTest();
-        	PageReference actual = formExtension.attach();
+            PageReference actual = formExtension.attach();
         Test.stopTest();
         
         PageReference expected = new PageReference('/'+ getStudent().Id);
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Should redirect to student detail page after updating record');
     }
 }

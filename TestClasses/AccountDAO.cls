@@ -1,18 +1,18 @@
-public class AccountDAO implements IAccountDAO { 
+public class AccountDAO implements IAccountDAO {
     public interface IAccountDAO {
         Account getRelatedContacts(Id accountId);
         Account getAccountFromContact(Id contactId);
         List<Account> getByBillingAddress(String whereClause);
         List<Account> getAccountsParentAccountDetails(List<Id> listOfAccountIds);
         List<AggregateResult> getAccountOpportunities();
-	}
+    }
         
     public static Account getRelatedContacts(Id accountId){
         return [
             SELECT Id, ContactIDs__c,
                 Number_of_Contacts__c,
-                (SELECT Id, Name
-                 FROM Contacts)
+               (SELECT Id, Name
+               FROM Contacts)
             FROM Account
             WHERE Id = :accountId
         ];
@@ -21,21 +21,22 @@ public class AccountDAO implements IAccountDAO {
     /*Dynamic query*/
     public static List<Account> getByBillingAddress(String whereClause){
         return Database.query(
-        	'SELECT Id, Name, BillingCity, BillingState, BillingCountry ' +
+            'SELECT Id, Name, BillingCity, BillingState, BillingCountry ' +
             'FROM Account ' +
             whereClause + 
-            ' LIMIT 100 ');
+            ' LIMIT 100 '
+        );
     }
     
     public static Account getAccountFromContact(Id contactId){
         return [
             SELECT Id, ContactIDs__c,
-			   (SELECT Id 
+		        (SELECT Id 
                 FROM Contacts)
 			FROM Account
 			WHERE Id IN 
-            	(SELECT AccountId
-                 FROM Contact
+                (SELECT AccountId
+                FROM Contact
                 WHERE Id = :contactId)
         ];
     }
@@ -43,17 +44,16 @@ public class AccountDAO implements IAccountDAO {
     public static List<Account> getAccountsParentAccountDetails(List<Id> listOfAccountIds){
         return [
             SELECT Id, Child_Count__c,
-            	(SELECT Id
+                (SELECT Id
                 FROM Accounts__r)
-          	FROM Account
+            FROM Account
             WHERE Id IN :listOfAccountIds
         ];
     }   
     
     public static List<AggregateResult> getAccountOpportunities(){
         return [
-            SELECT Account.Name AccountName, 
-            	SUM(Amount) SumOfOpportunity 
+            SELECT Account.Name AccountName, SUM(Amount) SumOfOpportunity 
             FROM Opportunity 
             GROUP BY Account.Name
             LIMIT 10

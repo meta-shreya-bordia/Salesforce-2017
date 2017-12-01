@@ -13,7 +13,11 @@ public class Students extends fflib_SObjectDomain {
         checkClassSize();
     }
     
-   	public override void onAfterInsert(){
+    public override void onAfterInsert(){
+        updateClassCount();
+    }
+    
+    public override void onAfterDelete(){
         updateClassCount();
     }
     
@@ -31,8 +35,7 @@ public class Students extends fflib_SObjectDomain {
     }
     
     public void updateClassCount(){
-		List<Student__c> listOfStudents = 
-           StudentDAO.getStudentByClass((List<Student__c>) Records);
+        List<Student__c> listOfStudents = StudentDAO.getStudentByClass((List<Student__c>) Records);
         Map<Id, Class__c> mapOfClasses = ClassDAO.getClassDetails();
         
         for(Student__c student :listOfStudents){

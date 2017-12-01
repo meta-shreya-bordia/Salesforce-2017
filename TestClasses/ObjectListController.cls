@@ -8,8 +8,7 @@ public class ObjectListController {
         get{
             if(listOfFieldNames == null || listOfFieldNames.size() == 0){
                 listOfFieldNames = new List<String>(
-	            	Schema.getGlobalDescribe().get(queryObject).getDescribe()
-                    .fields.getMap().keySet() );
+                    Schema.getGlobalDescribe().get(queryObject).getDescribe().fields.getMap().keySet() );
             }
             
             return listOfFieldNames;
@@ -22,8 +21,8 @@ public class ObjectListController {
             if( fieldsString == '' ){
                 for(String field :listOfFieldNames){
             		fieldsString += field+',';
-	        	}
-            	fieldsString = fieldsString.removeEnd(',');
+                }
+                fieldsString = fieldsString.removeEnd(',');
         	}
             
         	return fieldsString;    
@@ -32,7 +31,7 @@ public class ObjectListController {
     }
 
     public ObjectListController(){
-    	fieldsString = '';
+        fieldsString = '';
         sortOrder = '';
         size = 10;
     }

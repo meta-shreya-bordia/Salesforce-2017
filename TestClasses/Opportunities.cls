@@ -12,7 +12,7 @@ public class Opportunities extends fflib_SObjectDomain {
     
     public override void onBeforeUpdate(Map<Id,SObject> existingRecords){
         updateAccountManager();
-    	updateOppCloseDate(existingRecords);
+        updateOppCloseDate(existingRecords);
         notifyOpportunityOwnerWhenStatusUpdated(existingRecords);
     }    
         
@@ -27,7 +27,7 @@ public class Opportunities extends fflib_SObjectDomain {
         for(Integer index =0; index < listOfOpportunities.size(); index++) {
             if((listOfOldOpportunities[index].StageName != listOfOpportunities[index].StageName)
                 && (OpportunityConstants.CLOSED_WON.equals(listOfOpportunities[index].StageName)
-                	|| OpportunityConstants.CLOSED_LOST.equals(listOfOpportunities[index].StageName) ) ){
+                || OpportunityConstants.CLOSED_LOST.equals(listOfOpportunities[index].StageName) ) ){
                 
                 listOfOpportunities[index].CloseDate = System.Today();
             }
@@ -43,11 +43,8 @@ public class Opportunities extends fflib_SObjectDomain {
     } 
    
     public void deleteRelatedOpportunityLineItems(){
-        List<Opportunity> listOfOpportunities =
-            OpportunityDAO.getRelatedOpportunityLineItem((List<Opportunity>) Records);
-        
-    	List<OpportunityLineItem> listOfOpportunityLineItems =
-            new List<OpportunityLineItem>();
+        List<Opportunity> listOfOpportunities = OpportunityDAO.getRelatedOpportunityLineItem((List<Opportunity>) Records);
+    	List<OpportunityLineItem> listOfOpportunityLineItems = new List<OpportunityLineItem>();
         
         for(Opportunity opp: listOfOpportunities){        
             if( opp.Custom_Status__c != null
@@ -72,30 +69,9 @@ public class Opportunities extends fflib_SObjectDomain {
             if( listOfOpportunities[index].Owner.Email != null
                 && ! listOfOldOpportunities[index].StageName.equals(listOfOpportunities[index].StageName) ){
                 listOfOpportunitiesToEmail.add(listOfOpportunities[index]);    
-        	}
+            }
         }
 		
         OpportunityService.notifyOpportunityOwner( listOfOpportunitiesToEmail ); 	   
     }  
 }
-
-/**@Trigger	ClosedOpportunityTrigger
- * trigger for before insert and before update
- * when Opportunity StageName = 'Closed Won'
- * create a follow up task 
-
-trigger ClosedOpportunityTrigger on Opportunity (before insert, before update, before delete,
-    after insert, after update, after delete, after undelete) {
-        
-    List<Task> listOfTasks = new List<Task>();
-	OpportunityDAO oppDAO = new OpportunityDAO();
-        
-	if( (Trigger.isInsert || Trigger.isUpdate) && Trigger.isBefore ){
-     	for(Opportunity opportunity: oppDAO.getClosedWonOpportunity((List<Opportunity>) Trigger.New)){
-			Task followUpTask = Tasks.createNewTask(opportunity, OpportunityConstants.FOLLOW_UP_TEST_TASK);
-        	listOfTasks.add(followUpTask);                                                    
-     	}
-    }
-    
-	TaskDAO.insertTasks(listOfTasks);
-}**/

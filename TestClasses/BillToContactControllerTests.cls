@@ -1,12 +1,9 @@
 @isTest class BillToContactControllerTests {
     static final Integer noOfAccounts = 2;
     static final Integer noOfContacts = 3;
-    
     static final String TEST_NAME = 'Name';
     static final String TEST_STAGE = 'Prospecting';
     static final Date TEST_DATE = System.today();
-    
-    static final String ERROR_MSG = 'Controller does not return expected results';
     
     static BillToContactController getClassObject(){
         ApexPages.currentPage().getParameters().put('id', getOpportunity().Id);
@@ -23,7 +20,7 @@
             FROM Opportunity
         ];
     }
-    
+
     static List<Contact> getContacts(){
         return [
             SELECT Id
@@ -31,6 +28,7 @@
             WHERE Name LIKE :TEST_NAME+'%'
         ];
     }
+
     static List<Account> getAccounts(){
         return [
             SELECT Id
@@ -43,15 +41,17 @@
         List<Account> listOfAccounts = new List<Account>();
         for(Integer index = 0; index < noOfAccounts; index++){
             Account account = new Account(Name=TEST_NAME+index);
+
             listOfAccounts.add(account);
         }
         insert listOfAccounts;
         
         List<Contact> listOfContacts = new List<Contact>();
-        for(Integer index=0; index<noOfContacts; index++){
+        for(Integer index = 0; index < noOfContacts; index++){
             Contact contact = new Contact(
                 LastName=TEST_NAME+index,
                 AccountId = listOfAccounts[0].Id );
+            
             listOfContacts.add(contact);
         }
         insert listOfContacts;
@@ -65,17 +65,18 @@
         insert opportunity;
     }
     
-    @isTest static void testContactAsManagerShouldGetManagingAccountContacts(){
+    @isTest static void testContactAsManagerShouldReturnListOfAccountsManagingContactFromOpportunity(){
         BillToContactController controller = getClassObject();
         
         Test.startTest();
-        	List<SelectOption> listOfSelectOptions = controller.contactAsManager;
+            List<SelectOption> listOfSelectOptions = controller.contactAsManager;
         Test.stopTest();
         
         Integer expected = getContacts().size();
         Integer actual = listOfSelectOptions.size();
           
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual,
+            'Should Return List Of Account\'s Managing Contact in opportunity');
     }
     
     @isTest static void testContactAsManagerShouldNotSetBillToContactWhenManagerIsNull(){
@@ -83,26 +84,28 @@
         controller.opportunity.Manager__c  = null;
         
         Test.startTest();
-        	List<SelectOption> listOfSelectOptions = controller.contactAsManager;
+            List<SelectOption> listOfSelectOptions = controller.contactAsManager;
         Test.stopTest();
         
         Integer expected = 0;
         Integer actual = listOfSelectOptions.size();
           
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 
+            'Should Not Set Bill To Contact When Manager Is Null');
     }
     
     @isTest static void testSaveShouldUpdateBillToContactWithSelectedContact(){
         BillToContactController controller = getClassObject();
         
         Test.startTest();
-        	controller.save();
+            controller.save();
         Test.stopTest();
         
         Id expected = getContacts()[0].Id;
         Id actual = getOpportunity().BillToContact__c;
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual,
+            'Should Update Bill To Contact With the Selected Contact');
     }
     
     
@@ -110,25 +113,27 @@
         BillToContactController controller = getClassObject();
         
         Test.startTest();
-        	controller.clear();
+            controller.clear();
         Test.stopTest();
         
         Id expected = null;
         Id actual = controller.billToContact;
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual,
+            'Should reset selected option to null');
     }
     
-    @isTest static void testCancelShouldRedirectToOpportunityPageWithoutUpdateingBillToContactField(){
+    @isTest static void testCancelShouldRedirectToOpportunityPageWithoutUpdateBillToContactField(){
 		BillToContactController controller = getClassObject();
         
         Test.startTest();
-        	PageReference redirect = controller.cancel();
+            PageReference redirect = controller.cancel();
         Test.stopTest();
         
         String expected = new PageReference('/'+getOpportunity().Id).getUrl();
         String actual = redirect.getUrl();
         
-        System.assertEquals(expected, actual, ERROR_MSG);        
+        System.assertEquals(expected, actual,
+            'Should cancel setting BillToContact Field to new value');        
     }
 }

@@ -25,8 +25,8 @@ public class BillToContactController {
                 listOfContacts = AccountDAO.getRelatedContacts(accountId).contacts;
                 for(Contact contact :listOfContacts){
                     //value, label, isDisabled
-        			listOfSelectOptions.add( new SelectOption(contact.Id, contact.Name) ); 
-        		}
+                    listOfSelectOptions.add( new SelectOption(contact.Id, contact.Name) ); 
+                }
             }
 
             return listOfSelectOptions;
@@ -35,8 +35,8 @@ public class BillToContactController {
  
     public PageReference save(){
         if(billToContact != null){
-        	opportunity.BillToContact__c = billToContact;
-        	update opportunity;
+            opportunity.BillToContact__c = billToContact;
+            update opportunity;
         }
         
       	return redirect();
@@ -49,7 +49,7 @@ public class BillToContactController {
             update opportunity;
         }
         
-		return redirect();
+        return redirect();
     }
     
     public PageReference cancel(){

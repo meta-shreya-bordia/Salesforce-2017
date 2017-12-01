@@ -1,32 +1,28 @@
 @isTest class StackTests {
-    static final String ERROR_MSG = 'Stack does not contain same records';
-    
-    @isTest
-    static void testEmptyStack(){
+    @isTest static void testEmptyStack(){
         Stack stack = new Stack();
         
         Test.startTest();
-        	stack.pop();
+            stack.pop();
         Test.stopTest();
         
         Integer expected = 0;
         Integer actual = stack.size();
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Empty stack must have 0 size');
     }
     
-    @isTest
-    static void testStackPush(){
+    @isTest static void testStackPush(){
         Stack stack = new Stack();
 
         Test.startTest();
-        	stack.push('TEST');
+            stack.push('TEST');
         Test.stopTest();
         
         Integer expected = 1;
 		Integer actual = stack.size();
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Stack contains an element');
     }
     
     @isTest
@@ -35,11 +31,11 @@
         stack.push('TEST');
 
         Test.startTest();
-        	Object actual = stack.pop();
+            Object actual = stack.pop();
         Test.stopTest();
 
         Object expected = 'Test';
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Stack must pop out the top element');
     }
 }

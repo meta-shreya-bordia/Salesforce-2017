@@ -1,9 +1,6 @@
-@isTest
-class AccountServiceTests {
+@isTest class AccountServiceTests {
     static final Integer noOfAccounts = 2;
     static final Integer noOfContacts = 3;
-
-    static final String ERROR_MSG = 'Account does not contain expected contacts';
 	static final String TEST_NAME = 'Test';
         
     static List<Contact> getContacts(){
@@ -14,8 +11,7 @@ class AccountServiceTests {
         ];
     }
     
-    @testSetUp
-    static void setup(){
+    @testSetup static void setup(){
         List<Account> listOfAccounts = new List<Account>();
         for(Integer index = 0; index < noOfAccounts; index++){
             Account account = new Account(Name = TEST_NAME + index);
@@ -24,7 +20,7 @@ class AccountServiceTests {
         insert listOfAccounts;
         
         List<Contact> listOfContacts = new List<Contact>();
-        for(Integer index=0; index<noOfContacts; index++){
+        for(Integer index = 0; index < noOfContacts; index++){
             Contact contact = new Contact(
                 LastName= TEST_NAME + index,
                 AccountId = listOfAccounts[0].Id );
@@ -33,12 +29,11 @@ class AccountServiceTests {
         insert listOfContacts;
     }
     
-    @isTest
-    static void testUpdateContactIdListShouldUpdateAccountContactIdWithListOfRelatedContacts(){
+    @isTest static void testUpdateContactIdListShouldUpdateAccountContactIdWithListOfRelatedContacts(){
         List<Contact> listOfContacts = getContacts();
         
         Test.startTest();
-	        Account account = AccountService.updateAccountContactId( listOfContacts[0].Id);
+            Account account = AccountService.updateAccountContactId( listOfContacts[0].Id);
     	Test.stopTest();
         
         String expected = '';
@@ -48,6 +43,6 @@ class AccountServiceTests {
         expected = expected.removeEnd(',');
         String actual = account.ContactIDs__c;
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Account\'s field ContactIDs must be updated with list of related contacts');
     }
 }

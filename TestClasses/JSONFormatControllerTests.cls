@@ -1,14 +1,12 @@
 @isTest class JSONFormatControllerTests {
-	static final String expectedJsonString =  '{"attributes":';
-    static final String ERROR_MSG = 'Json String does not parse an object';
+    static final String expectedJsonString =  '{"attributes":';
     
-    @isTest
-    static void testJSONFormatShouldReturnJSONString(){
+    @isTest static void testJSONFormatShouldReturnJSONString(){
         Test.startTest();
-        	String actual = new JSONFormatController().jsonString;
+            String actual = new JSONFormatController().jsonString;
         Test.stopTest();
         
         Boolean expected = actual.contains(expectedJsonString);
-        System.assert(expected, ERROR_MSG);
+        System.assert(expected, 'JSON string does not contain account object attributes');
     }
 }

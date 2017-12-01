@@ -1,8 +1,7 @@
-public class TeacherDAO 
-	implements ITeacherDAO {
+public class TeacherDAO implements ITeacherDAO {
     
     public interface ITeacherDAO{
-    	List<Contact> getTeacherBySubjects(String allSubjects);
+        List<Contact> getTeacherBySubjects(String allSubjects);
         List<Contact> getTeacherDetails(List<Contact> listOfContacts);
     }
         
@@ -10,13 +9,13 @@ public class TeacherDAO
         return [
             SELECT FirstName, LastName, Subjects__c
             FROM Contact as Teacher
-            WHERE Subjects__c INCLUDES(:allSubjects)
+         	WHERE Subjects__c INCLUDES(:allSubjects)
         ];
     }
         
     public static List<Contact> getTeacherDetails(List<Contact> listOfContacts){
         return [
-			SELECT Id, Subjects__c
+            SELECT Id, Subjects__c
             FROM Contact
         ];
     }    

@@ -3,14 +3,11 @@
     static final Integer TEST_SIZE = 2;
     static final Integer TEST_PAGE = 2;
     static final Date TEST_DATE = System.today();
-    
     static final String TEST_FIELDS = 'Id,Name,StageName,CloseDate';
     static final String TEST_NAME = 'Test';
     static final String TEST_STAGE = 'Prospecting';
     static final String TEST_SOBJECT = 'Opportunity';
-    
     static final String sortOrder = 'StageName';
-    static final String ERROR_MSG = 'Controller does not return required records';
     
     static ObjectListController getController(){
     	ObjectListController controller = new ObjectListController();
@@ -21,7 +18,7 @@
     
     static List<SObject> getRecords(){
         return Database.query(
-        	'SELECT '+TEST_FIELDS
+           'SELECT '+TEST_FIELDS
             +' FROM '+TEST_SOBJECT
             +' ORDER BY '+sortOrder
         );
@@ -33,8 +30,7 @@
             Opportunity opportunity = new Opportunity(
                 Name = TEST_NAME + index,
                 StageName = TEST_STAGE,
-                CloseDate = TEST_DATE
-            );
+                CloseDate = TEST_DATE);
             listOfOpportunities.add(opportunity);
         }
         insert listOfOpportunities;
@@ -44,26 +40,26 @@
         ObjectListController controller = getController();
         
         Test.startTest();
-        	List<String> listOfFieldNames = controller.getFieldNames();
+            List<String> listOfFieldNames = controller.getFieldNames();
         Test.stopTest();
         
         Integer expected = 0;
         Integer actual = listOfFieldNames.size();
         
-        System.assertNotEquals( expected, actual, ERROR_MSG);
+        System.assertNotEquals( expected, actual, 'Should Return All Field Names For SObject');
     }
     
     @isTest static void testGetObjectListShouldGetAllRecordsForAnSObject(){
         ObjectListController controller = getController();
         
         Test.startTest();
-        	List<sObject> listOfSObjects = controller.getObjectList();
+            List<sObject> listOfSObjects = controller.getObjectList();
         Test.stopTest();
         
         Integer expected = TEST_SIZE;
         Integer actual = listOfSObjects.size();
         
-        System.assertEquals( expected, actual, ERROR_MSG);
+        System.assertEquals( expected, actual, 'Should Get All Records For An SObject');
     }
     
     @isTest static void testSortingShouldSortResultPerSortingOrderSpecified(){
@@ -71,7 +67,7 @@
 		controller.sortOrder = sortOrder;
         
         Test.startTest();
-        	controller.sorting();
+            controller.sorting();
         Test.stopTest();
         
         Opportunity opportunity = (Opportunity)controller.getObjectList()[0];
@@ -79,7 +75,7 @@
         String expected = TEST_STAGE;
         String actual = opportunity.StageName;
         
-        System.assertEquals( expected, actual, ERROR_MSG);
+        System.assertEquals( expected, actual, 'Should Sort Result Per Sorting Order Specified');
     }
     
     @isTest static void testGoToPageShouldNavigateToPage(){
@@ -87,12 +83,12 @@
 		controller.jumpToPage = TEST_PAGE;
         
         Test.startTest();
-        	controller.goToPage();
+            controller.goToPage();
         Test.stopTest();
         
         Integer expected = TEST_PAGE;
         Integer actual = controller.controller.getPageNumber();
         
-        System.assertEquals( expected, actual, ERROR_MSG);
+        System.assertEquals( expected, actual, 'Should Navigate To Input Page Number');
     }
 }

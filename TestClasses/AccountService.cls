@@ -5,7 +5,7 @@ public class AccountService {
  
         if(listOfContacts != null && listOfContacts.size() > 0){
             String cntId = account.ContactIDs__c;            
-        	for(Contact contact :listOfContacts){
+            for(Contact contact :listOfContacts){
                 if( cntId == null){
                     cntId='';
                 }if( !cntId.contains(contact.Id) ){
@@ -13,8 +13,8 @@ public class AccountService {
                 }
             }
             account.ContactIDs__c = cntId;            
-	    	update account;
-       	}
+	        update account;
+        }
         
         return account;
     }

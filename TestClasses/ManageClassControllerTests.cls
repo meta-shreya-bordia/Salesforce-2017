@@ -1,9 +1,7 @@
 @isTest class ManageClassControllerTests {
-	static final Integer noOfClasses = 2;
-    
-   	static final String TEST_NAME = 'TEST';
+    static final Integer noOfClasses = 2;
+    static final String TEST_NAME = 'TEST';
     static final String TEST_UPDATE_NAME = 'Class';
-    static final String ERROR_MSG = 'Controller does not return expected results';
     
     static ManageClassController getController(){
         return new ManageClassController();
@@ -16,8 +14,7 @@
         ];
     }
     
-    @testSetup
-    static void setup() {
+    @testSetup static void setup() {
         List<Class__c> listOfClasses = new List<Class__c>();
         for(Integer index=0; index< noOfClasses; index++){
             Class__c cls = new Class__c(Name= TEST_NAME+index);
@@ -26,23 +23,21 @@
         insert listOfClasses;
     }
     
-    @isTest
-    static void testSetClassObjectShouldRenderClassDetails(){
+    @isTest static void testSetClassObjectShouldRenderClassDetails(){
         ManageClassController controller = getController();
         controller.classId = getClasses()[0].Id;
         
         Test.startTest();
-        	controller.setClassObject();
+            controller.setClassObject();
         Test.stopTest();
         
         Boolean expected = true;
         Boolean actual = controller.toBeRendered;
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Should Render Class Details');
     }
     
-    @isTest
-    static void testGetClassesReturnsAllClassDetails(){
+    @isTest static void testGetClassesReturnsAllClassDetails(){
         ManageClassController controller = getController();
         
        	Test.startTest();
@@ -52,11 +47,10 @@
         Integer expected = noofClasses;
         Integer actual = listOfClasses.size();
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Should return class details of all classes');
     }
     
-    @isTest
-    static void testSaveShouldUpdateClassDetails(){
+    @isTest static void testSaveShouldUpdateClassDetails(){
         ManageClassController controller = getController();
         List<Class__c> listOfClasses = getClasses();
         controller.classId = listOfClasses[0].Id;
@@ -70,11 +64,10 @@
         String expected = TEST_UPDATE_NAME;
         String actual = controller.getClasses()[0].Name;
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Should update class name to '+TEST_UPDATE_NAME);
     }
     
-    @isTest
-    static void testHideShouldHideClassDetails(){
+    @isTest static void testHideShouldHideClassDetails(){
         ManageClassController controller = getController();
         controller.classId = getClasses()[0].Id;
         
@@ -85,7 +78,7 @@
         Boolean expected = false;
         Boolean actual = controller.toBeRendered;
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Should render class details to be hidden');
     }
     
     @isTest
@@ -94,12 +87,12 @@
         controller.classId = getClasses()[0].Id;
         
         Test.startTest();
-        	controller.deleteClass();
+            controller.deleteClass();
         Test.stopTest();
         
         Integer expected = noOfClasses-1;
         Integer actual = controller.getClasses().size();
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Should delete selected class record');
     }    
 }

@@ -6,14 +6,11 @@ public class DeleteStudentsExtension {
     
     public List<Student__c> getSelectedStudents(){
         if(listOfSelectedStudents == null || listOfSelectedStudents.size() == 0){
-            ApexPages.addmessage(new ApexPages.message(
-                ApexPages.severity.WARNING, 'No records selected'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.WARNING, 'No records selected'));
             return null;
         }
 
-        List<Student__c> listOfStudents = StudentDAO.getStudentByClass(
-        	listOfSelectedStudents);
-        
+        List<Student__c> listOfStudents = StudentDAO.getStudentByClass(listOfSelectedStudents);
         return listOfStudents;
     }
     
