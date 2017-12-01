@@ -2,8 +2,6 @@
     static final String TEST_SUBJECT = 'Subject';
     static final String TEST_BODY = 'Email Body';
     static final String TEST_ADDRESS = 'shreya.bordia@metacube.com';
-    static final String ERROR_MSG = 'Email Service did not deliver the mail';
-    
     static final String TEST_FILENAME = 'contact.xml';
     static final String ATTACHMENT_BODY = 
         '<contacts>'
@@ -25,18 +23,17 @@
     
 	static Messaging.InboundEmail getEmail(){
         Messaging.InboundEmail email = new Messaging.InboundEmail() ;
-   		
-        email.Subject = TEST_SUBJECT;
+   		email.Subject = TEST_SUBJECT;
         email.fromAddress = TEST_ADDRESS;
         
-        Messaging.InboundEmail.TextAttachment attachmenttext = 
-            new Messaging.InboundEmail.TextAttachment();
+        Messaging.InboundEmail.TextAttachment attachmenttext = new Messaging.InboundEmail.TextAttachment();
 		attachmenttext.body = ATTACHMENT_BODY;
   		attachmenttext.fileName = TEST_FILENAME;
         
   		email.textAttachments = new Messaging.inboundEmail.TextAttachment[] { attachmenttext };            
         return email;    
     }
+    
     static Messaging.InboundEnvelope getEnvelope(){
         return new Messaging.InboundEnvelope();
     }
@@ -53,12 +50,12 @@
         Boolean expected = true;
         Boolean actual = result.success;
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Inbound email service did not insert contacts to database');
     }
     
     @isTest static void testSendEmailShouldDeliverAnEmailToAddress(){
         Test.startTest();
-	    	EmailService.sendMail( TEST_ADDRESS, TEST_SUBJECT, TEST_BODY );    
+	        EmailService.sendMail( TEST_ADDRESS, TEST_SUBJECT, TEST_BODY );    
         Test.stopTest();
     }
 }

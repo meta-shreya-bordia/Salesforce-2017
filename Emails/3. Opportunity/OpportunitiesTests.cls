@@ -5,13 +5,10 @@
     static final Integer noOfPricebooks = 3;
     static final Integer noOfProducts = 2;
     static final Integer noOfOpportunityLineItems = 2;
-    
     static final String TEST_NAME = 'Opportuntiy';
     static final String TEST_STAGENAME = 'Prospecting';
     static final Integer TEST_QUANTITY = 2;
     static final Decimal TEST_PRICE = 20.2;
-    
-    static final String ERROR_MSG = 'Unexpected Opportunity';
     static final String EXPECTED_STAGENAME = 'Closed Won';
     static final String EXPECTED_STATUS = 'Reset';
     
@@ -34,7 +31,7 @@
     }
     
     static List<Contact> getContacts(){
-        return [
+         return [
             SELECT Id, AccountId
             FROM Contact
         ];
@@ -49,7 +46,7 @@
         insert listOfAccounts;
         
         List<Contact> listOfContacts = new List<Contact>();
-        for(Integer index=0; index < noOfContacts; index++){
+        for(Integer index = 0; index < noOfContacts; index++){
             Contact contact = new Contact(
                 LastName= TEST_NAME+index,
                 AccountId = listOfAccounts[0].Id );
@@ -58,14 +55,13 @@
         insert listOfContacts;
         
 		List<Opportunity> listOfOpportunities = new List<Opportunity>();
-        
         for(Integer index = 0; index<noOfOpportunities; index++){
             Opportunity opportunity = new Opportunity(
                 Name = TEST_NAME +index,
                 StageName = TEST_STAGENAME,
-            	CloseDate = System.Today() - 7,
+                CloseDate = System.Today() - 7,
                 AccountId = listOfAccounts[0].Id,
-            	BillToContact__c = listOfContacts[0].Id);
+                BillToContact__c = listOfContacts[0].Id);
             
             listOfOpportunities.add(opportunity);
         }
@@ -81,31 +77,30 @@
         for(Integer index = 0; index < noOfProducts; index++){
             listOfProducts.add( new Product2(
                 Name = TEST_NAME+index,
-            	isActive = true)
-            );
+           	    isActive = true));
         }
         insert listOfProducts;
         
         List<PricebookEntry> listOfPricebookEntries = new List<PricebookEntry>();
         for(Integer index = 0; index < noOfProducts; index++){
             PricebookEntry pricebookEntry = new PricebookEntry(
-            	Unitprice = 1,
-            	Product2Id = listOfProducts[index].Id,
-            	Pricebook2Id = Test.getStandardPricebookId(),
-            	isActive=true,
-            	UseStandardPrice = false);
+                Unitprice = 1,
+                Product2Id = listOfProducts[index].Id,
+                Pricebook2Id = Test.getStandardPricebookId(),
+                isActive=true,
+                UseStandardPrice = false);
+            
             listOfPricebookEntries.add(pricebookEntry);
         }
         insert listOfPricebookEntries;
             
         List<OpportunityLineItem> listOfOpportunityLineItem = new List<OpportunityLineItem>();
-        for(Integer index=0; index< noOfOpportunityLineItems; index++){
-            listOfOpportunityLineItem.add(
-                new OpportunityLineItem (
-                	Quantity = TEST_QUANTITY, 
-                	OpportunityId = listOfOpportunities[0].Id,
-                	UnitPrice = TEST_PRICE,
-                	PriceBookEntryId = listOfPriceBookEntries[0].Id));
+        for(Integer index = 0; index < noOfOpportunityLineItems; index++){
+            listOfOpportunityLineItem.add(new OpportunityLineItem (
+                Quantity = TEST_QUANTITY, 
+                OpportunityId = listOfOpportunities[0].Id,
+                UnitPrice = TEST_PRICE,
+                PriceBookEntryId = listOfPriceBookEntries[0].Id));
         }
         insert listOfOpportunityLineItem;
         
@@ -117,82 +112,86 @@
 		List<Opportunity> listOfOpportunities = getOpportunities();
         
         Test.startTest();
-        	update listOfOpportunities;
+            update listOfOpportunities;
         Test.stopTest();
         
         Date expected = System.today();
         Date actual = listOfOpportunities[0].CloseDate;
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Opportunity close date should be today\'s date');
     }
     
     @isTest static void testUpdateOppCloseDateShouldNotUpdateCloseDateToTodayWhenStageIsAlreadyClosed(){
         List<Opportunity> listOfOpportunities = getOpportunities();
         
         Test.startTest();
-        	update listOfOpportunities;
+            update listOfOpportunities;
         Test.stopTest();
         
         Date expected = System.today() - 7;
         Date actual = listOfOpportunities[0].CloseDate;
         
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Opportunity close date must not be modified');
     }
     
     @isTest static void testUpdateAccountManagerShouldSetManagerFieldWithCorrespondingContactAccount(){
 		List<Opportunity> listOfOpportunities = getOpportunities();
         
         Test.startTest();
-        	update listOfOpportunities;
+            update listOfOpportunities;
         Test.stopTest();
         
         Id expected = getAccounts()[0].Id;
         Id actual = listOfOpportunities[0].Manager__c;
         
-        System.assertEquals(expected, actual, ERROR_MSG);        
+        System.assertEquals(expected, actual,
+            'Should Set Manager Field With Corresponding Contact Account');        
     }
     
     @isTest static void testDeleteRelatedOpportunityLineItemsShouldDeleteLineItemsWhenStatusIsReset(){
-		List<Opportunity> listOfOpportunities = getOpportunities();
+        List<Opportunity> listOfOpportunities = getOpportunities();
         
         Test.startTest();
-        	update listOfOpportunities;
+            update listOfOpportunities;
         Test.stopTest();
         
         Integer expected = 0;
         Integer actual = listOfOpportunities[0].OpportunityLineItems.size();
         
-        System.assertEquals(expected, actual, ERROR_MSG);        
+        System.assertEquals(expected, actual, 'Should Delete Line Items When Status Is Reset');        
     }
     
-    @isTest static void testOnBeforeUpdate(){
-    	List<Opportunity> listOfOpportunities = getOpportunities();
+    @isTest static void testOnBeforeUpdateShouldUpdateOpportunityManagerToSetAccount(){
+        List<Opportunity> listOfOpportunities = getOpportunities();
         
         Test.startTest();
-        	update listOfOpportunities;
+            update listOfOpportunities;
         Test.stopTest();
         
 	    Id expectedManager = getAccounts()[0].Id;
         Id actualManager = listOfOpportunities[0].Manager__c;
         
-        System.assertEquals(expectedManager, actualManager, ERROR_MSG);           
+        System.assertEquals(expectedManager, actualManager, 
+            'Should Set Manager Field With Corresponding Account');           
         
         Date expectedCloseDate  = System.today();
         Date actualCloseDate = listOfOpportunities[0].CloseDate;
         
-        System.assertEquals(expectedCloseDate, actualCloseDate, ERROR_MSG);        
+        System.assertEquals(expectedCloseDate, actualCloseDate,
+            'Opportunity close date should be today\'s date');        
     }
 
-    @isTest static void testOnAfterUpdate(){
+    @isTest static void testOnAfterUpdateShouldDeleteAssociatedOpportunityLineItemsOnReset(){
         List<Opportunity> listOfOpportunities = getOpportunities();
         
         Test.startTest();
-        	update listOfOpportunities;
+            update listOfOpportunities;
         Test.stopTest();
         
         Integer expected = 0;
         Integer actual = listOfOpportunities[0].OpportunityLineItems.size();
         
-        System.assertEquals(expected, actual, ERROR_MSG);        
+        System.assertEquals(expected, actual,
+            'Should Delete Line Items When Status Is Reset');        
     }
 }

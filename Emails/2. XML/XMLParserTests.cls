@@ -1,7 +1,5 @@
 @isTest class XMLParserTests {
-    static final String ERROR_MSG = 'XML Parser cant be parsed';
     static final String TEST_EXPECTED = 'Error Parsing Document';
-    
     static final String ATTACHMENT_BODY = 
         '<contacts>'
 	        +'<contact>'
@@ -22,24 +20,23 @@
         
     @isTest static void testXMLParserShouldParseContactsAndInsertContacts(){
         Test.startTest();
-        	XMLParser parsedResults = new XMLParser(ATTACHMENT_BODY);
+            XMLParser parsedResults = new XMLParser(ATTACHMENT_BODY);
 		Test.stopTest();
         
         Integer expected = 2;
         Integer actual = parsedResults.listOfContactsToInsert.size();
 
-        System.assertEquals(expected, actual, ERROR_MSG);
+        System.assertEquals(expected, actual, 'Should parse 2 contacts');
     }
     
     @isTest static void testXMLParserShouldThrowErrorWhenStringIsNotContact(){
         try{
             Test.startTest();
-            	XMLParser parsedResults = new XMLParser(null);
+                XMLParser parsedResults = new XMLParser(null);
             Test.stopTest();
         }catch(Exception error){
             Boolean expected = error.getMessage().contains(TEST_EXPECTED);
-            
-            System.assert(expected, ERROR_MSG);
+            System.assert(expected, 'Should Throw Error When String Is Not A Contact');
         }
     }
 }
