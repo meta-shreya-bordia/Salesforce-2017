@@ -43,6 +43,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Order total of a list of orderlineitems that have been purchased</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -53,7 +54,9 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Account__c</fullName>
+        <description>Customer details</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter customer details</inlineHelpText>
         <label>Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Purchase Orders</relationshipLabel>
@@ -76,6 +79,7 @@
     </fields>
     <fields>
         <fullName>OrderTotal__c</fullName>
+        <description>Total cost price of a bill</description>
         <externalId>false</externalId>
         <label>Order Total</label>
         <summarizedField>PurchaseOrderLineItem__c.TotalPrice__c</summarizedField>

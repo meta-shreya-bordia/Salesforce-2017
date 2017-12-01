@@ -43,6 +43,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>InDevelopment</deploymentStatus>
+    <description>Product available for order. Contains their price and category</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -53,13 +54,14 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Category__c</fullName>
+        <description>Products vary by category</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter product type</inlineHelpText>
         <label>Category</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
-            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
@@ -83,6 +85,7 @@
     </fields>
     <fields>
         <fullName>ProductCode__c</fullName>
+        <description>Products can be identified by a unique code(auto-generated)</description>
         <displayFormat>P-{0000}</displayFormat>
         <externalId>false</externalId>
         <label>ProductCode</label>
@@ -91,7 +94,9 @@
     </fields>
     <fields>
         <fullName>UnitPrice__c</fullName>
+        <description>Product per piece price</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter product cost price</inlineHelpText>
         <label>Unit Price</label>
         <precision>18</precision>
         <required>true</required>

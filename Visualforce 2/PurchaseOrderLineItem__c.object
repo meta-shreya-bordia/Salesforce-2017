@@ -43,6 +43,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Detail on product object that contains quantity and total price for a product</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -53,7 +54,9 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Product__c</fullName>
+        <description>Product to buy</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter product to buy</inlineHelpText>
         <label>Product</label>
         <referenceTo>Product__c</referenceTo>
         <relationshipLabel>Purchase Order Line Items</relationshipLabel>
@@ -66,6 +69,7 @@
     </fields>
     <fields>
         <fullName>PurchaseOrder__c</fullName>
+        <description>Associated order which identifies who has bought the item</description>
         <externalId>false</externalId>
         <label>Purchase Order</label>
         <referenceTo>PurchaseOrder__c</referenceTo>
@@ -79,7 +83,9 @@
     </fields>
     <fields>
         <fullName>Quantity__c</fullName>
+        <description>Purchase quantity of a product</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter Purchase quantity of a product</inlineHelpText>
         <label>Quantity</label>
         <precision>18</precision>
         <required>true</required>
@@ -90,6 +96,7 @@
     </fields>
     <fields>
         <fullName>TotalPrice__c</fullName>
+        <description>Unit price of a product * quantity of purchase</description>
         <externalId>false</externalId>
         <formula>UnitPrice__c *  Quantity__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -102,6 +109,7 @@
     </fields>
     <fields>
         <fullName>UnitPrice__c</fullName>
+        <description>Unit price of a purchase order line item</description>
         <externalId>false</externalId>
         <label>Unit Price</label>
         <precision>18</precision>
