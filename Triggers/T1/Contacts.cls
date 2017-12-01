@@ -11,7 +11,7 @@ public class Contacts extends fflib_SObjectDomain {
     }
 
     public override void onBeforeInsert(){
-    	denyAccess();
+        denyAccess();
     }
     
     public override void onBeforeUpdate(Map<Id,SObject> existingRecords){
@@ -22,7 +22,7 @@ public class Contacts extends fflib_SObjectDomain {
     
     public void denyAccess(){
         for(Contact contact :((List<Contact>)Records) ) {
-            if(	contact.Subjects__c != null
+            if(contact.Subjects__c != null
                 && contact.Subjects__c.contains(ContactConstants.HINDI)){
                 contact.addError(ContactConstants.ACCESS_DENIED);
             }

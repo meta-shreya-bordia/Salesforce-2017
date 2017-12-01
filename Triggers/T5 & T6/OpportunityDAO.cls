@@ -1,29 +1,16 @@
 public class OpportunityDAO Implements IOpportunityDAO {
     public interface IOpportunityDAO{
-        List<Opportunity> getClosedWonOpportunity(List<Opportunity> listOfOpportunities);
         List<Opportunity> getUnmodifiedOpportunities();
         List<Opportunity> getRelatedOpportunityLineItem(List<Opportunity> listOfOpportunities);
         Opportunity getOpportunity(Id opportunityId);
-    }
-    
-    /**@Method	getClosedWonOpportunity()
-     * get list of all opportunities
-     * with StageName = 'Closed Won'
-	**/
-    public static List<Opportunity> getClosedWonOpportunity(List<Opportunity> listOfOpportunities){
-        return [
-            SELECT Id
-            FROM Opportunity
-			WHERE Id = :listOfOpportunities
-			AND StageName = :OpportunityConstants.CLOSED_WON
-        ];
+        List<Opportunity> getOpportunityDetails(List<Opportunity> listOfOpportunities);
     }
     
     public static List<Opportunity> getUnmodifiedOpportunities(){
         return [
             SELECT Id, Owner.Email, LastModifiedDate
-			FROM Opportunity
-			WHERE LastModifiedDate != LAST_N_DAYS:30
+		    FROM Opportunity
+		    WHERE LastModifiedDate != LAST_N_DAYS:30
         ];
     }
     
@@ -43,5 +30,13 @@ public class OpportunityDAO Implements IOpportunityDAO {
             FROM Opportunity 
             WHERE Id = :opportunityId
        ];
+    }
+    
+    public static List<Opportunity> getOpportunityDetails(List<Opportunity> listOfOpportunities){
+        return [
+            SELECT Id, Name, Owner.Name, Owner.Email, StageName, CloseDate
+            FROM Opportunity
+            WHERE Id IN :listOfOpportunities
+        ];
     }
 }

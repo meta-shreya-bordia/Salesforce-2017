@@ -9,18 +9,17 @@ global class SendReminderEmail implements Database.Batchable<sObject> {
         this.body = body;
 	}
     
-    global Database.QueryLocator start(Database.BatchableContext bc) {
+    global Database.QueryLocator start(Database.BatchableContext batchableContext) {
     	return Database.getQueryLocator(query);
 	}
 
-    global void execute(Database.BatchableContext bc, List<Speaker__c> scope) {
+    global void execute(Database.BatchableContext batchableContext, List<Speaker__c> scope) {
     	for (Speaker__c speaker : scope) {
-        	EmailManager.sendMail(speaker.Email__c, this.subject, this.body);
+            EmailService.sendMail(speaker.Email__c, this.subject, this.body);
     	}
 	}
 
 
-    global void finish(Database.BatchableContext bc) {
-
+    global void finish(Database.BatchableContext batchableContext) {
     }
 }

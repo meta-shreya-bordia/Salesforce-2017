@@ -8,7 +8,7 @@ public class CaseDAO implements ICaseDAO {
     
     public static List<Case> getCases(String searchIn, String searchParameter){
         return Database.query(
-        	'SELECT Id, CaseNumber '+
+            'SELECT Id, CaseNumber '+
             'FROM Case '+
             'WHERE '+ searchIn + '= \''+ searchParameter + '\''
         );
@@ -16,8 +16,7 @@ public class CaseDAO implements ICaseDAO {
     
     public static Case getCaseById(Id caseId){
         return [
-            SELECT CaseNumber, Subject,
-            	Status, Origin, Priority
+            SELECT CaseNumber, Subject, Status, Origin, Priority
             FROM Case
             WHERE Id = :caseId
         ];
