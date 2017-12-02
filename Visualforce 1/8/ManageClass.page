@@ -1,31 +1,31 @@
 <apex:page controller="ManageClassController">
    <apex:form >
-       <apex:pageBlock title="Classes"  id="class-block">
+       <apex:pageBlock title="{!$Label.Class}"  id="class-block">
            <apex:pageBlockTable value="{! classes}" var="cls">
                <apex:column >
-                   <apex:commandLink value="Edit" reRender="edit-block" style="font-weight:bold" action="{! setClassObject}">
+                   <apex:commandLink value="{!$Label.Edit}" reRender="edit-block" style="font-weight:bold" action="{! setClassObject}">
                        <apex:param name="id" value="{! cls.id}" assignTo="{! classId}"/>
                    </apex:commandLink>
                    &nbsp;|&nbsp;
-                   <apex:commandLink value="Delete" reRender="class-block" style="font-weight:bold; color:blue" action="{! deleteClass}">
+                   <apex:commandLink value="{!$Label.Delete}" reRender="class-block" style="font-weight:bold; color:blue" action="{! deleteClass}">
                        <apex:param name="id" value="{! cls.id}" assignTo="{! classId}"/>
                    </apex:commandLink>
                </apex:column>
-               <apex:column value="{! cls.Name}"/>
-               <apex:column value="{! cls.Contact__c}"/>
-               <apex:column value="{! cls.Board__c}"/>
+               <apex:column headerValue="{!$Label.Class}" value="{! cls.Name}"/>
+               <apex:column headerValue="{!$Label.Teacher}" value="{! cls.Contact__c}"/>
+               <apex:column headerValue="{!$Label.Board}" value="{! cls.Board__c}"/>
            </apex:pageBlockTable>
            
            <apex:pageBlock id="edit-block">
-               <apex:pageBlockSection title="Edit" rendered="{!toBeRendered}">
+               <apex:pageBlockSection title="{!$Label.Edit}" rendered="{!toBeRendered}">
                    <apex:inputField value="{! classObject.Name}"/> 
                    <apex:inputField value="{! classObject.Board__c}"/>  
                    <apex:inputField value="{! classObject.Contact__c}"/>
                    <apex:inputField value="{! classObject.Fee__c}"/>
                </apex:pageBlockSection>
                <apex:pageBlockButtons rendered="{!toBeRendered}">
-                   <apex:commandButton value="Save" action="{!save}" reRender="class-block"/>
-                   <apex:commandButton value="Return" action="{!hide}" reRender="class-block"/>
+                   <apex:commandButton value="{!$Label.Save}" action="{!save}" reRender="class-block"/>
+                   <apex:commandButton value="{!$Label.Back}" action="{!hide}" reRender="class-block"/>
                </apex:pageBlockButtons>
            </apex:pageBlock>
        </apex:pageBlock>

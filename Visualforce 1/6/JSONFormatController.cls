@@ -1,5 +1,5 @@
 public class JSONFormatController {
-	public String jsonString {get;set;}
+    public String jsonString {get;set;}
 
     public JSONFormatController(){
         jsonString = prepareData();

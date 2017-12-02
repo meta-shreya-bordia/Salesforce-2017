@@ -6,6 +6,7 @@ public class ManageClassController {
    public Map<Id,Class__c> mapOfClass;
    
    public ManageClassController(){
+       mapOfClass = ClassDAO.getClassDetails();
        hide();
    }
    
@@ -15,7 +16,6 @@ public class ManageClassController {
    }
    
    public List<Class__c> getClasses(){
-       mapOfClass = ClassDAO.getClassDetails();
        return mapOfClass.values();
    }
    
@@ -25,12 +25,13 @@ public class ManageClassController {
    
    public void save(){
        update classObject;
-       toBeRendered = false;
+       hide();
    }
    
    public void deleteClass(){
        setClassObject();
        delete classObject;
        mapOfClass.remove(classObject.Id);
+       hide();
    }
 }

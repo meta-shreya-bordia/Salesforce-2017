@@ -6,9 +6,9 @@
             </apex:selectRadio>
             
             <apex:pageBlockButtons >
-                <apex:commandButton action="{!save}" value="Save"/>
-                <apex:commandButton action="{!clear}" value="Clear"/>
-                <apex:commandButton action="{!cancel}" value="Cancel"/>
+                <apex:commandButton action="{!save}" value="{!$Label.Save}"/>
+                <apex:commandButton action="{!clear}" value="{!$Label.Clear}"/>
+                <apex:commandButton action="{!cancel}" value="{!$Label.Cancel}"/>
             </apex:pageBlockButtons>
         </apex:pageBlock>
     </apex:form>

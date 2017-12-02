@@ -1,12 +1,13 @@
-public class StudentFormController {
+public class StudentFormExtension {
    public Student__c student {get; set;}
    
-   public StudentFormController(ApexPages.StandardController pdfController){
+   public StudentFormExtension(ApexPages.StandardController pdfController){
        student = (Student__c)pdfController.getRecord();
    }
    
    public PageReference attach() {
-       List<Attachment> listOfAttachments = AttachmentDAO.getAttachmentsByParentId(student.Id);
+       List<Attachment> listOfAttachments = 
+           AttachmentDAO.getAttachmentsByParentId(student.Id);
        
        Attachment attachmentToDelete = new Attachment();
        Attachment addAttachment = new Attachment();
