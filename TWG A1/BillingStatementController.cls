@@ -9,7 +9,6 @@ public class BillingStatementController {
     
     /*Controller properties*/
     private List<BillingStatementWrapper> listOfBillingStatementWrappers;
-    //public List<Billing_Statement__c> listOfBillingStatements{get; set;}
     
 	public BillingStatementController(){
         TotalAllocated = 0.0;
@@ -30,8 +29,7 @@ public class BillingStatementController {
     }
     
         public List<BillingStatementWrapper> getNegativeTotalBillingStatements(){
-        List<BillingStatementWrapper> listOfNegativeBillingStatementWrappers 
-            = new List<BillingStatementWrapper>();
+        List<BillingStatementWrapper> listOfNegativeBillingStatementWrappers = new List<BillingStatementWrapper>();
         
         for(Billing_Statement__c statement: BillingStatementDAO.getUnpaidNegativeTotalStatements()) {
             BillingStatementWrapper billingStatement = new BillingStatementWrapper(statement);
@@ -42,7 +40,7 @@ public class BillingStatementController {
         return listOfNegativeBillingStatementWrappers;
     }
 
-        /*Wrapper Class*/
+    /*Wrapper Class*/
     public class BillingStatementWrapper {
         public Billing_Statement__c billingStatement {get; set;}
         public Decimal outstanding {get; set;}

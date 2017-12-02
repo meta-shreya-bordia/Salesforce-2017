@@ -21,7 +21,6 @@
                     });
                 }else{
 					$('[id$=PaymentError]').show();
-                    
                     $(this).css({"color":"black", "font-weight":"bold"});
                     
                     $('[id$=TotalAvailableToAllocatedId]').text(function(){
@@ -76,12 +75,9 @@
             }else{
                 $('[id$=AllocationError]').hide();
             	allocate.disabled = true;
-                
                 outstanding.innerHTML = outstandingAmount + parseInt(allocate.value);
-                
                 totalAvailableToAllocate.text(totalAvailableToAllocateAmount - parseFloat(allocate.value) );
                 totalAllocated.text( parseFloat(totalAllocated.text()) - parseFloat(allocate.value) );
-                
                 allocate.value = 0.0;
             }
             
@@ -95,8 +91,7 @@
             var allocateAmount = parseFloat(allocate.value);
             
             var outstanding = document.getElementById(outstandingAmt);            
-            var oustandingAmount = parseFloat(document.getElementById(totalAmt).innerHTML) 
-                	+ parseFloat(document.getElementById(paidAmt).innerHTML);
+            var oustandingAmount = parseFloat(document.getElementById(totalAmt).innerHTML) + parseFloat(document.getElementById(paidAmt).innerHTML);
             
             var totalAllocated = $('[id$=TotalAllocateId]');
             var totalAllocatedAmount = parseFloat(totalAllocated.text());
@@ -109,7 +104,8 @@
                || ((oustandingAmount > 0) && (allocateAmount < 0) ) 
                || (oustandingAmount < 0 && allocateAmount > 0) 
                || (totalAvailableToAllocateAmount - oldValue + allocateAmount > 0) ) {
-                allocate.value = oldValue;
+                
+				allocate.value = oldValue;
                 $('[id$=AllocationError]').show();
             }else{
             	$('[id$=AllocationError]').hide();
@@ -166,11 +162,8 @@
 			<div id="AllocationError" class="alert alert-warning text-center">{!$Label.Allocation_Error}</div>            
             
             <apex:pageBlock >
-                <apex:pageBlockTable columns="6" id="bsTable" styleClass="container"
-                                     value="{!PositiveTotalBillingStatements}" var="statement">
-                    <apex:column headerValue="{!$Label.Receivable}"
-                                 value="{!statement.billingStatement.Name}"
-                                 styleClass="col-sm-2"/>
+                <apex:pageBlockTable columns="6" id="bsTable" styleClass="container" value="{!PositiveTotalBillingStatements}" var="statement">
+                    <apex:column headerValue="{!$Label.Receivable}" value="{!statement.billingStatement.Name}" styleClass="col-sm-2"/>
                     
                     <apex:column headerValue="{!$Label.Total}" styleClass="col-sm-2">
                         <apex:outputText style="color:{!if(statement.billingStatement.Total_Amount__c < 0, 'Red', 'Black')}"
@@ -200,29 +193,27 @@
             </apex:pageBlock>
             
             <apex:pageBlock > 
-                <apex:pageBlockTable value="{!NegativeTotalBillingStatements}" var="statement"
-                                     columns="6" styleClass="container">
-                    <apex:column headerValue="{!$Label.Payable_Credit_Notes}" value="{!statement.billingStatement.Name}"
-                                 styleClass="col-sm-2"/>
+                <apex:pageBlockTable value="{!NegativeTotalBillingStatements}" var="statement" columns="6" styleClass="container">
+                    <apex:column headerValue="{!$Label.Payable_Credit_Notes}" value="{!statement.billingStatement.Name}" styleClass="col-sm-2"/>
                     
                     <apex:column headerValue="{!$Label.Total}" styleClass="col-sm-2">
                         <apex:outputText style="color:{!if(statement.billingStatement.Total_Amount__c < 0, 'Red', 'Black')}"
-                                         id="NegativeTotalBillingStatement" value="{!statement.billingStatement.Total_Amount__c}" />
+   						    id="NegativeTotalBillingStatement" value="{!statement.billingStatement.Total_Amount__c}" />
                     </apex:column>
                     
                     <apex:column headerValue="{!$Label.Received}" styleClass="col-sm-2">
                         <apex:outputText style="color:{!if(statement.billingStatement.Paid_Amount__c < 0, 'Red', 'Black')}"
-                                         id="PositiveTotalPaidBillingStatement" value="{!statement.billingStatement.Paid_Amount__c}"/>
+                            id="PositiveTotalPaidBillingStatement" value="{!statement.billingStatement.Paid_Amount__c}"/>
                     </apex:column>
                     
                     <apex:column headerValue="{!$Label.Outstanding}" styleClass="col-sm-2">
                         <apex:outputText style="color:{!if(statement.outstanding < 0, 'Red', 'Black')}"
-                                         id="NegativeOutstanding" value="{!statement.outstanding}"/>
+                            id="NegativeOutstanding" value="{!statement.outstanding}"/>
                     </apex:column>
                     
                     <apex:column headerValue="{!$Label.SelectLabel}" styleClass="col-sm-2">
                         <apex:inputCheckbox value="{!statement.selected}" id="statementSelected"
-                                            onchange="populateBillingStatement(this, '{!$Component.NegativeAllocateInput}', '{!$Component.NegativeOutstanding}')"/>
+                            onchange="populateBillingStatement(this, '{!$Component.NegativeAllocateInput}', '{!$Component.NegativeOutstanding}')"/>
                     </apex:column>
                     
                     <apex:column headerValue="{!$Label.Allocated}" styleClass="col-sm-2">
