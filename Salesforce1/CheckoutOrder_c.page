@@ -1,4 +1,4 @@
-<apex:page controller="OnlinePurchaseOrderController_c" showHeader="true">
+<apex:page controller="OnlinePurchaseOrderController" showHeader="true">
     <apex:form >
         <apex:pageBlock title="{!$Label.Order_Details}">
             <apex:pageBlockSection title="{!$Label.Customer_Details}">

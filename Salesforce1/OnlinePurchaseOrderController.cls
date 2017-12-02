@@ -1,26 +1,20 @@
-public class OnlinePurchaseOrderController_c {
+public class OnlinePurchaseOrderController {
     private final Integer SIZE = 10;
-
+    
     public String searchTerm {get; set;}
-    
     public PurchaseOrder__c order{get; set;}
-    
     public Boolean renderProductList{get; set;}
     public Boolean renderCart {get; set;}
-    
     public Id selectedProductId {get; set;}
     public Id selectedOrderItemId {get; set;}
     public String filterCategory {get; set;}
-
     public Map<Id, Product__c> mapOfProducts  {get; set;}
     public Map<Id, PurchaseOrderLineItem__c> mapOfOrderLineItems {get; set;}
 
-    public OnlinePurchaseOrderController_c(){
-		order = new PurchaseOrder__c();
-        
+    public OnlinePurchaseOrderController(){
+        order = new PurchaseOrder__c();
         renderProductList = false;
         mapOfProducts = Product_cDAO.getAllProductDetails();
- 
         renderCart = false;
         mapOfOrderLineItems = new Map<Id, PurchaseOrderLineItem__c>();
         
@@ -30,7 +24,7 @@ public class OnlinePurchaseOrderController_c {
     
     public void goToProductList(){
         if(order.Account__c != null){
-        	renderProductList = true;
+            renderProductList = true;
         }
     }
     
@@ -40,7 +34,7 @@ public class OnlinePurchaseOrderController_c {
     
     public List<Product__c> getProducts(){
         if(this.searchTerm != ''){
-			return Product_cDAO.getAllProductDetails( mapOfProducts, this.searchTerm );
+            return Product_cDAO.getAllProductDetails( mapOfProducts, this.searchTerm );
         }
         
         return mapOfProducts.values();
@@ -48,14 +42,14 @@ public class OnlinePurchaseOrderController_c {
 
     public void addToCart(){
         if(!renderCart){            
- 	       renderCart = true;
+            renderCart = true;
         }
         
         Product__c product = mapOfProducts.remove(selectedProductId);
-		PurchaseOrderLineItem__c orderItem = new PurchaseOrderLineItem__c(
+        PurchaseOrderLineItem__c orderItem = new PurchaseOrderLineItem__c(
             Product__c = product.Id,
             Product__r = product,
-			UnitPrice__c = product.UnitPrice__c,
+            UnitPrice__c = product.UnitPrice__c,
             Quantity__c = 1);
         
         mapOfOrderLineItems.put( product.Id , orderItem );
@@ -63,8 +57,7 @@ public class OnlinePurchaseOrderController_c {
     
     public List<PurchaseOrderLineItem__c> getOrderLineItems(){
     	if(filterCategory != ''){
-            List<PurchaseOrderLineItem__c> listOfPurchaseOrderLineItem =
-                new List<PurchaseOrderLineItem__c>();
+            List<PurchaseOrderLineItem__c> listOfPurchaseOrderLineItem = new List<PurchaseOrderLineItem__c>();
             List<Product__c> listOfProducts = 
                 Product_cDAO.getProductByCategory(mapOfOrderLineItems.keySet(), filterCategory );
             
@@ -91,7 +84,7 @@ public class OnlinePurchaseOrderController_c {
         List<SelectOption> listOfSelectOptions = new List<SelectOption>();
         
         for(String category : Product_cDAO.getProductCategory() ){
-        	listOfSelectOptions.add( new SelectOption( category, category )  );
+            listOfSelectOptions.add( new SelectOption( category, category )  );
         }
         
         return listOfSelectOptions;
@@ -105,11 +98,11 @@ public class OnlinePurchaseOrderController_c {
         insert order;
 
         for(PurchaseOrderLineItem__c orderItem :mapOfOrderLineItems.values() ){
-        	orderItem.PurchaseOrder__c = order.Id;
+            orderItem.PurchaseOrder__c = order.Id;
             orderItem.PurchaseOrder__r = order;
         }
         insert mapOfOrderLineItems.values();
-		order = PurchaseOrder_cDAO.getOrderDetails(order.Id);
+        order = PurchaseOrder_cDAO.getOrderDetails(order.Id);
 
         return new PageReference('/apex/OrderDetails_c');
     }

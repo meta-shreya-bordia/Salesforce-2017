@@ -1,4 +1,4 @@
-<apex:page controller="OnlinePurchaseOrderController_c" showHeader="true">
+<apex:page controller="OnlinePurchaseOrderController" showHeader="true">
     <apex:outputText label="{!$Label.Order_Confirmation}" value="{!order.Id}"></apex:outputText>
     
     <apex:pageBlock title="Order Details">

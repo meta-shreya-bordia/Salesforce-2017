@@ -1,4 +1,4 @@
-<apex:page controller="OnlinePurchaseOrderController_c" showHeader="true">
+<apex:page controller="OnlinePurchaseOrderController" showHeader="true">
     <head>
         <script src="jquery-3.2.1.min.js"></script>
         <script>
