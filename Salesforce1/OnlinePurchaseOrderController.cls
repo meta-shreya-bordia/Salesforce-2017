@@ -1,6 +1,5 @@
 public class OnlinePurchaseOrderController {
-    private final Integer SIZE = 10;
-    
+    final Integer SIZE = 10;
     public String searchTerm {get; set;}
     public PurchaseOrder__c order{get; set;}
     public Boolean renderProductList{get; set;}
@@ -14,10 +13,9 @@ public class OnlinePurchaseOrderController {
     public OnlinePurchaseOrderController(){
         order = new PurchaseOrder__c();
         renderProductList = false;
-        mapOfProducts = Product_cDAO.getAllProductDetails();
+        mapOfProducts = ProductDAO.getAllProductDetails();
         renderCart = false;
-        mapOfOrderLineItems = new Map<Id, PurchaseOrderLineItem__c>();
-        
+        mapOfOrderLineItems = new Map<Id, PurchaseOrderLineItem__c>();       
         searchTerm = '';
         filterCategory = '';
     }
@@ -34,7 +32,7 @@ public class OnlinePurchaseOrderController {
     
     public List<Product__c> getProducts(){
         if(this.searchTerm != ''){
-            return Product_cDAO.getAllProductDetails( mapOfProducts, this.searchTerm );
+            return ProductDAO.getAllProductDetails( mapOfProducts, this.searchTerm );
         }
         
         return mapOfProducts.values();
@@ -58,8 +56,7 @@ public class OnlinePurchaseOrderController {
     public List<PurchaseOrderLineItem__c> getOrderLineItems(){
     	if(filterCategory != ''){
             List<PurchaseOrderLineItem__c> listOfPurchaseOrderLineItem = new List<PurchaseOrderLineItem__c>();
-            List<Product__c> listOfProducts = 
-                Product_cDAO.getProductByCategory(mapOfOrderLineItems.keySet(), filterCategory );
+            List<Product__c> listOfProducts = ProductDAO.getProductByCategory(mapOfOrderLineItems.keySet(), filterCategory );
             
             for(Product__c product :listOfProducts){
                 if( mapOfOrderLineItems.containsKey( product.Id ) ){
@@ -83,7 +80,7 @@ public class OnlinePurchaseOrderController {
     public List<SelectOption> getFilterCategories(){
         List<SelectOption> listOfSelectOptions = new List<SelectOption>();
         
-        for(String category : Product_cDAO.getProductCategory() ){
+        for(String category : ProductDAO.getProductCategory() ){
             listOfSelectOptions.add( new SelectOption( category, category )  );
         }
         
@@ -113,14 +110,12 @@ public class OnlinePurchaseOrderController {
     
     public void search(){
     }
-    
-    public Integer noOfRecords {get; set;}
+
     public ApexPages.StandardSetController availableProductsList {
        get {
            if(availableProductsList == null) {    
                availableProductsList = new ApexPages.StandardSetController(mapOfProducts.values());
-               availableProductsList.setPageSize(SIZE);  
-               noOfRecords = availableProductsList.getResultSize();
+               availableProductsList.setPageSize(SIZE);
            }           
            renderProductList = true;
            return availableProductsList;
