@@ -44,7 +44,7 @@
         List<Product__c> listOfProducts = new List<Product__c>();
         for(Integer index = 0; index < noOfProducts; index++ ){
             Product__c product = new Product__c(
-           	    Name = TEST_NAME + index,
+                Name = TEST_NAME + index,
                 UnitPrice__c = TEST_PRICE + index,
                 Category__c = TEST_CATEGORY
             );
@@ -59,7 +59,7 @@
         controller.order.Account__c = getAccounts()[0].Id;
         
         Test.startTest();
-	        controller.goToProductList();
+	    controller.goToProductList();
         Test.stopTest();
         
         Boolean expected = true;
@@ -72,7 +72,7 @@
         OnlinePurchaseOrderController controller = getControllerClassObject();
         
         Test.startTest();
-		    controller.cancel();
+	    controller.cancel();
         Test.stopTest();
         
         Integer expected = 0;
@@ -85,7 +85,7 @@
         OnlinePurchaseOrderController controller = getControllerClassObject();
         
         Test.startTest();
-		    list<Product__c> listOfProducts = controller.getProducts();
+	    List<Product__c> listOfProducts = controller.getProducts();
         Test.stopTest();
         
         Integer expected = noOfProducts;
@@ -99,7 +99,7 @@
         controller.searchTerm = TEST_NAME+0;
         
         Test.startTest();
-            List<Product__c> listOfProducts = controller.getProducts();
+	    List<Product__c> listOfProducts = controller.getProducts();
         Test.stopTest();
         
         Integer expected = 1;
@@ -113,7 +113,7 @@
         controller.searchTerm = TEST_NAME+0;
         
         Test.startTest();
-            controller.search();
+	    controller.search();
         Test.stopTest();
         
         Integer expected = 1;
@@ -127,7 +127,7 @@
         controller.selectedProductId = getProducts()[0].Id;
         
         Test.startTest();
-            controller.addToCart();
+	    controller.addToCart();
         Test.stopTest();
         
         Boolean expected = true;
@@ -142,7 +142,7 @@
         controller.addToCart();
         
         Test.startTest();
-	        List<PurchaseOrderLineItem__c> listOfPurchaseOrderLineItems = controller.getOrderLineItems();
+	    List<PurchaseOrderLineItem__c> listOfPurchaseOrderLineItems = controller.getOrderLineItems();
         Test.stopTest();
         
         Integer expected = 1;
@@ -158,7 +158,7 @@
         controller.filterCategory = TEST_CATEGORY;
         
         Test.startTest();
-        	List<PurchaseOrderLineItem__c> listOfPurchaseOrderLineItems = controller.getOrderLineItems();
+	    List<PurchaseOrderLineItem__c> listOfPurchaseOrderLineItems = controller.getOrderLineItems();
         Test.stopTest();
         
         Integer expected = 1;
@@ -175,7 +175,7 @@
         controller.selectedOrderItemId = product;
         
         Test.startTest();
-            controller.removeFromCart();
+	    controller.removeFromCart();
         Test.stopTest();
         
         Boolean expected = false;
@@ -188,7 +188,7 @@
         OnlinePurchaseOrderController controller = getControllerClassObject();
         
         Test.startTest();
-	        List<SelectOption> listOfSelectOptions = controller.getFilterCategories();
+	    List<SelectOption> listOfSelectOptions = controller.getFilterCategories();
         Test.stopTest();
         
         Integer expected = 1;
@@ -201,7 +201,7 @@
         OnlinePurchaseOrderController controller = getControllerClassObject();
         
         Test.startTest();
-	        PageReference redirect = controller.checkout();
+	    PageReference redirect = controller.checkout();
         Test.stopTest();
         
         String expected = checkoutPage;
@@ -215,7 +215,7 @@
         controller.order.Account__c = getAccounts()[0].Id;
         
         Test.startTest();
-            PageReference redirect = controller.placeOrder();
+	    PageReference redirect = controller.placeOrder();
         Test.stopTest();
         
         PurchaseOrder__c expected = null;
@@ -229,7 +229,7 @@
         controller.order.Account__c = getAccounts()[0].Id;
         
         Test.startTest();
-            PageReference redirect = controller.placeOrder();
+	    PageReference redirect = controller.placeOrder();
         Test.stopTest();
         
         String expected = orderDetailsPage;
@@ -242,7 +242,7 @@
         OnlinePurchaseOrderController controller = getControllerClassObject();
         
         Test.startTest();
-	        PageReference redirect = controller.back();
+	    PageReference redirect = controller.back();
         Test.stopTest();
         
         String expected = productListPage;
