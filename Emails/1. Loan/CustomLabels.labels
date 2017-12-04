@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>ACCESS_DENIED_TO_INSERT</fullName>
+        <categories>error value</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ACCESS_DENIED_TO_INSERT</shortDescription>
+        <value>Cannot add student to class. Max size reached.</value>
+    </labels>
+    <labels>
+        <fullName>Account_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Account_Name</shortDescription>
+        <value>Account Name</value>
+    </labels>
+    <labels>
+        <fullName>Account_Opportunity_Amount</fullName>
+        <categories>value</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Account_Opportunity_Amount</shortDescription>
+        <value>Sum of Opportunity Amount</value>
+    </labels>
+    <labels>
+        <fullName>Accounts</fullName>
+        <categories>value</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Accounts</shortDescription>
+        <value>Accounts</value>
+    </labels>
+    <labels>
+        <fullName>Add_Student</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add_Student</shortDescription>
+        <value>Add Student</value>
+    </labels>
+    <labels>
+        <fullName>Back</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>Billing_City</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Billing City</shortDescription>
+        <value>Billing City</value>
+    </labels>
+    <labels>
+        <fullName>Billing_Country</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Billing Country</shortDescription>
+        <value>Billing Country</value>
+    </labels>
+    <labels>
+        <fullName>Billing_State</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Billing State</shortDescription>
+        <value>Billing State</value>
+    </labels>
+    <labels>
+        <fullName>Board</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Board</shortDescription>
+        <value>Board</value>
+    </labels>
+    <labels>
+        <fullName>Cancel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>Cart</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Cart</shortDescription>
+        <value>Cart</value>
+    </labels>
+    <labels>
+        <fullName>Checkout</fullName>
+        <categories>value</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Checkout</shortDescription>
+        <value>Checkout</value>
+    </labels>
+    <labels>
+        <fullName>Class</fullName>
+        <categories>value</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Class</shortDescription>
+        <value>Class</value>
+    </labels>
+    <labels>
+        <fullName>ClassLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ClassLabel</shortDescription>
+        <value>Class</value>
+    </labels>
+    <labels>
+        <fullName>Class_Edit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Class Edit</shortDescription>
+        <value>Class Edit</value>
+    </labels>
+    <labels>
+        <fullName>Clear</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Clear</shortDescription>
+        <value>Clear</value>
+    </labels>
+    <labels>
+        <fullName>Closed_Lost</fullName>
+        <categories>value</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Closed Lost</shortDescription>
+        <value>Closed Lost</value>
+    </labels>
+    <labels>
+        <fullName>Closed_Won</fullName>
+        <categories>value</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Closed Won</shortDescription>
+        <value>Closed Won</value>
+    </labels>
+    <labels>
+        <fullName>ContinueLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ContinueLabel</shortDescription>
+        <value>Continue</value>
+    </labels>
+    <labels>
+        <fullName>Customer_Details</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Customer Details</shortDescription>
+        <value>Customer Details</value>
+    </labels>
+    <labels>
+        <fullName>Date_Of_Birth</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Date_Of_Birth</shortDescription>
+        <value>Date Of Birth</value>
+    </labels>
+    <labels>
+        <fullName>Delete</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>Edit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>Existing</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Existing</shortDescription>
+        <value>Existing</value>
+    </labels>
+    <labels>
+        <fullName>Filter</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Filter</shortDescription>
+        <value>Filter</value>
+    </labels>
+    <labels>
+        <fullName>Filter_Results</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Filter_Results</shortDescription>
+        <value>Filter Results</value>
+    </labels>
+    <labels>
+        <fullName>First</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>First</shortDescription>
+        <value>First</value>
+    </labels>
+    <labels>
+        <fullName>First_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>First Name</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>Follow_Up_Test_Task</fullName>
+        <categories>Task</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Follow Up Test Task</shortDescription>
+        <value>Follow Up Test Task</value>
+    </labels>
+    <labels>
+        <fullName>Generate_PDF</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Generate_PDF</shortDescription>
+        <value>Generate PDF</value>
+    </labels>
+    <labels>
+        <fullName>Go_To</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Go To</shortDescription>
+        <value>Go To</value>
+    </labels>
+    <labels>
+        <fullName>HELLO_WORLD</fullName>
+        <categories>value</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>HELLO WORLD</shortDescription>
+        <value>HELLO WORLD</value>
+    </labels>
+    <labels>
+        <fullName>HELLO_WORLD_CLICK</fullName>
+        <categories>button value</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>HELLO_WORLD_CLICK</shortDescription>
+        <value>Click Me</value>
+    </labels>
+    <labels>
+        <fullName>Heritage_Account</fullName>
+        <categories>Value</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Heritage Account</shortDescription>
+        <value>Heritage Account</value>
+    </labels>
+    <labels>
+        <fullName>Id</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Id</shortDescription>
+        <value>Id</value>
+    </labels>
+    <labels>
+        <fullName>Last</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Last</shortDescription>
+        <value>Last</value>
+    </labels>
+    <labels>
+        <fullName>Last_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Last_Name</shortDescription>
+        <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>Loan_Email_Body</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Loan_Email_Body</shortDescription>
+        <value>Dear {0},
+\nYour loan {1} numbered {2} for amount {3} has been {4} by {5}
+\nRegards
+Bank</value>
+    </labels>
+    <labels>
+        <fullName>Loan_Email_Subject</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Loan_Email_Subject</shortDescription>
+        <value>Your loan has been {0}</value>
+    </labels>
+    <labels>
+        <fullName>Next</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Email_Body</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Opportunity_Email_Body</shortDescription>
+        <value>Dear {0}
+\nYour opportunity {1} due on {2} has been modified to {3}
+\nRegards
+Admin</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Email_Subject</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Opportunity_Email_Subject</shortDescription>
+        <value>Your opportunity has been modified</value>
+    </labels>
+    <labels>
+        <fullName>Order</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Order</shortDescription>
+        <value>Order</value>
+    </labels>
+    <labels>
+        <fullName>Order_Confirmation</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Order_Confirmation</shortDescription>
+        <value>Your order has been placed. Your Order Id is:</value>
+    </labels>
+    <labels>
+        <fullName>Order_Details</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Order Details</shortDescription>
+        <value>Order Details</value>
+    </labels>
+    <labels>
+        <fullName>Order_Items</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Order Items</shortDescription>
+        <value>Order Items</value>
+    </labels>
+    <labels>
+        <fullName>Order_Total</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Order_Total</shortDescription>
+        <value>Order Total</value>
+    </labels>
+    <labels>
+        <fullName>Page</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Page</shortDescription>
+        <value>Page</value>
+    </labels>
+    <labels>
+        <fullName>Previous</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Previous</shortDescription>
+        <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>Product</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Product</shortDescription>
+        <value>Product</value>
+    </labels>
+    <labels>
+        <fullName>Product_Category</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Product Category</shortDescription>
+        <value>Product Category</value>
+    </labels>
+    <labels>
+        <fullName>Product_Code</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Product Code</shortDescription>
+        <value>Product Code</value>
+    </labels>
+    <labels>
+        <fullName>Product_List</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Product List</shortDescription>
+        <value>Product List</value>
+    </labels>
+    <labels>
+        <fullName>Product_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Product Name</shortDescription>
+        <value>Product Name</value>
+    </labels>
+    <labels>
+        <fullName>Purchase</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Purchase</shortDescription>
+        <value>Purchase</value>
+    </labels>
+    <labels>
+        <fullName>Quantity</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Quantity</shortDescription>
+        <value>Quantity</value>
+    </labels>
+    <labels>
+        <fullName>Records_per_page</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Records per page</shortDescription>
+        <value>Records per page</value>
+    </labels>
+    <labels>
+        <fullName>Reset</fullName>
+        <categories>value</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Reset</shortDescription>
+        <value>Reset</value>
+    </labels>
+    <labels>
+        <fullName>Save</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>Search</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>Search_All_available_Products</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Search All available Products</shortDescription>
+        <value>Search All available Products</value>
+    </labels>
+    <labels>
+        <fullName>Sex</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Sex</shortDescription>
+        <value>Sex</value>
+    </labels>
+    <labels>
+        <fullName>Sign_In</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Sign In</shortDescription>
+        <value>Sign In</value>
+    </labels>
+    <labels>
+        <fullName>Student_Edit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Student_Edit</shortDescription>
+        <value>Student Edit</value>
+    </labels>
+    <labels>
+        <fullName>Teacher</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Teacher</shortDescription>
+        <value>Teacher</value>
+    </labels>
+    <labels>
+        <fullName>Total_Items</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Total Items</shortDescription>
+        <value>Total Items</value>
+    </labels>
+    <labels>
+        <fullName>Total_Price</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Total_Price</shortDescription>
+        <value>Total Price</value>
+    </labels>
+    <labels>
+        <fullName>Unit_Price</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Unit Price</shortDescription>
+        <value>Unit Price</value>
+    </labels>
+    <labels>
+        <fullName>fflib_QueryFactory_crossobject_fieldsets_not_allowed_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when selecting a cross-object fieldsset is not allowed and attempted.</shortDescription>
+        <value>Cross-object fields not allowed and field &quot;{0}&quot; is a cross-object field.</value>
+    </labels>
+    <labels>
+        <fullName>fflib_QueryFactory_fieldset_wrong_sobject_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when selecting a field set for a different sobject type.</shortDescription>
+        <value>Field set &quot;{0}&quot; is not for SObject type &quot;{1}&quot;</value>
+    </labels>
+    <labels>
+        <fullName>fflib_QueryFactory_recursive_subquery_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Presented when attempting to nest subqueries.</shortDescription>
+        <value>Invalid call to subselectQuery.  You may not add a subselect query to a subselect query.</value>
+    </labels>
+    <labels>
+        <fullName>fflib_QueryFactory_subquery_invalid_relationship</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Presented when attempting to create a subquery from an invalid relationship.</shortDescription>
+        <value>Invalid call to subselectQuery.  Invalid relationship for table.</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_field_not_insertable</fullName>
+        <categories>security,error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>fflib_security_error_field_not_insertable</shortDescription>
+        <value>You do not have permission to insert field {1} on {0}</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_field_not_readable</fullName>
+        <categories>security,error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>fflib_security_error_field_not_readable</shortDescription>
+        <value>You do not have permission to read the field {1} on {0}</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_field_not_updateable</fullName>
+        <categories>security,error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>fflib_security_error_field_not_updateable</shortDescription>
+        <value>You do not have permission to update the field {1} on {0}</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_object_not_deletable</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>fflib_security_error_object_not_deletable</shortDescription>
+        <value>You do not have permission to delete {0}</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_object_not_insertable</fullName>
+        <categories>security,error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>fflib_security_error_object_not_insertable</shortDescription>
+        <value>You do not have permission to insert {0}</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_object_not_readable</fullName>
+        <categories>security,error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>fflib_security_error_object_not_readable</shortDescription>
+        <value>You do not have permission to read {0}</value>
+    </labels>
+    <labels>
+        <fullName>fflib_security_error_object_not_updateable</fullName>
+        <categories>security,error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>fflib_security_error_object_not_updateable</shortDescription>
+        <value>You do not have permission to update {0}</value>
+    </labels>
+</CustomLabels>
