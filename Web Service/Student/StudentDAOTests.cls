@@ -45,7 +45,7 @@
         
         List<Contact> listOfTeachers = new List<Contact>();
         for(Integer index = 0; index < noOfTeachers; index++){
-            Contact classTeacher = new Contact(
+        	Contact classTeacher = new Contact(
                 FirstName = TEST_NAME + index,
                 LastName = TEST_NAME + index,
                 Subjects__c = TEST_SUBJECT);
@@ -104,7 +104,7 @@
     @isTest static void testGetStudentByClassIdShouldReturnStudentsInAClassById(){
         List<Class__c> listOfClasses = getClasses();
 
-        Test.startTest();
+		Test.startTest();
             List<Student__c> listOfStudents = StudentDAO.getStudentByClassId(listOfClasses[0].Id);
         Test.stopTest();
         
@@ -128,7 +128,7 @@
     @isTest static void testGetStudentsBySubjectShouldReturnStudentsStudyingSubjects(){
         List<Class__c> listOfClasses = getClasses();
 
-        Test.startTest();
+		Test.startTest();
             List<Student__c> listOfStudents = StudentDAO.getStudentsBySubject();
         Test.stopTest();
         
