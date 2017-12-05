@@ -43,6 +43,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Junction object that maps class and teacher teaching a subject relationship.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -53,7 +54,9 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Class__c</fullName>
+        <description>Class where students are taught</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter class to teach in</inlineHelpText>
         <label>Teaches In</label>
         <referenceTo>Class__c</referenceTo>
         <relationshipLabel>Teaches In</relationshipLabel>
@@ -66,13 +69,14 @@
     </fields>
     <fields>
         <fullName>Subject__c</fullName>
+        <description>Picklist values that describe subject taught in a class by teacher</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter course to teach</inlineHelpText>
         <label>Subject</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
-            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
@@ -96,7 +100,9 @@
     </fields>
     <fields>
         <fullName>Teacher__c</fullName>
+        <description>Teacher teaching in a class</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter teacher in associated class</inlineHelpText>
         <label>Taught By</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Taught By</relationshipLabel>

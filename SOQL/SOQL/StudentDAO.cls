@@ -61,9 +61,7 @@ public class StudentDAO implements IStudentDAO {
         List<Id> listofClassIds = ClassDAO.getClassBySubject();
         
     	return [
-            SELECT First_Name__c, 
-                Last_Name__c,
-                Class__r.Name
+            SELECT First_Name__c, Last_Name__c, Class__r.Name
             FROM Student__c
             WHERE Class__c IN :listofClassIds
         ];        

@@ -18,11 +18,11 @@
         </actions>
         <active>true</active>
         <description>Notify the account owner when someone else updates the account if the account&apos;s annualrevenue is greater than $1,000,000.</description>
-        <formula>AND(
-LastModifiedDate &lt;&gt; CreatedDate,
-LastModifiedById &lt;&gt;  OwnerId,
- AnnualRevenue &gt; 1000000 
-)</formula>
+		<formula>AND(
+			LastModifiedDate &lt;&gt; CreatedDate,
+			LastModifiedById &lt;&gt;  OwnerId,
+			AnnualRevenue &gt; 1000000 
+		)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>
