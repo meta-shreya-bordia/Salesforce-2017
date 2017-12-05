@@ -135,6 +135,7 @@
         <defaultValue>false</defaultValue>
         <description>Whether the student is married or not</description>
         <externalId>false</externalId>
+        <inlineHelpText>Is student married?</inlineHelpText>
         <label>isMarried</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>

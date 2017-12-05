@@ -101,6 +101,7 @@
         <fullName>Detailed_Description__c</fullName>
         <description>Class description about the courses available and taught by details</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter class details</inlineHelpText>
         <label>Detailed Description</label>
         <length>32768</length>
         <trackTrending>false</trackTrending>
