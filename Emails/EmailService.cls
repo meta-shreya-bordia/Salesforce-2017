@@ -3,7 +3,6 @@ global with sharing class EmailService implements Messaging.InboundEmailHandler 
         Messaging.InboundEmail email, Messaging.InboundEnvelope envelope) {
         
         Messaging.InboundEmailResult result = new Messaging.InboundEmailResult();
-        
         Messaging.InboundEmail.TextAttachment[] attachments = email.textAttachments;
         String XMLData = '';
         
@@ -23,16 +22,13 @@ global with sharing class EmailService implements Messaging.InboundEmailHandler 
     public static void sendMail(String mailingAddress, String subject, String body) {
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         
-        String[] toAddresses = new String[] {mailingAddress};
-            
+        String[] toAddresses = new String[] {mailingAddress};            
         mail.setToAddresses(toAddresses);
         mail.setSaveAsActivity(false);
         mail.setSubject(subject);
         mail.setPlainTextBody(body);
         
-        Messaging.SendEmailResult[] results = Messaging.sendEmail(
-            new Messaging.SingleEmailMessage[] { mail });
-        
+        Messaging.SendEmailResult[] results = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
         inspectResults(results);
     }
     

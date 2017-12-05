@@ -7,12 +7,10 @@ public class XMLParser {
        
        DOM.Document document = new DOM.Document();
        try {
-           document.load(XMLString);
-           
+           document.load(XMLString);           
            DOM.XmlNode rootNode = document.getRootElement();
            parseXML(rootNode);
            listOfContactsToInsert.add(contact);
-           
            insert listOfContactsToInsert;
        }catch(Exception errors){
            System.debug( ContactConstants.ERROR_PARSING_DOCUMENT + errors);

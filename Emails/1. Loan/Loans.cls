@@ -18,8 +18,7 @@ public class Loans extends fflib_SObjectDomain {
     }
 
     public void setCityManager(){
-        List<CityManager__c> listOfManagers =
-            CityManagerDAO.getManagerByCity();
+        List<CityManager__c> listOfManagers = CityManagerDAO.getManagerByCity();
         List<Loan__c> listOfLoans = (List<Loan__c>) Records;
         
         for(Loan__c loan :listOfLoans) {
@@ -38,10 +37,11 @@ public class Loans extends fflib_SObjectDomain {
         
         for(Integer index = 0; index < listOfLoans.size(); index++){
             if( listOfLoans[index].Applicant_Email__c != null
-              && listOfLoans[index].Status__c != listOfOldLoans[index].Status__c
-              && ( LoanConstants.APPROVED == listOfLoans[index].Status__c
-              	|| LoanConstants.REJECTED == listOfLoans[index].Status__c) ){
-                listOfLoansToEmail.add( listOfLoans[index] );
+			    && listOfLoans[index].Status__c != listOfOldLoans[index].Status__c
+                && ( LoanConstants.APPROVED == listOfLoans[index].Status__c
+                || LoanConstants.REJECTED == listOfLoans[index].Status__c) ){
+                
+				listOfLoansToEmail.add( listOfLoans[index] );
             }
         }
         

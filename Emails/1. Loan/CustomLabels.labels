@@ -295,6 +295,13 @@ Bank</value>
         <value>Your loan has been {0}</value>
     </labels>
     <labels>
+        <fullName>New</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>New</shortDescription>
+        <value>New</value>
+    </labels>
+    <labels>
         <fullName>Next</fullName>
         <language>en_US</language>
         <protected>true</protected>

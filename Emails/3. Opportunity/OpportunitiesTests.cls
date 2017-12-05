@@ -14,8 +14,7 @@
     
     static List<Opportunity> getOpportunities(){
         return [
-            SELECT Id, StageName, CloseDate, Custom_Status__c,
-            	BillToContact__c, Manager__c,
+            SELECT Id, StageName, CloseDate, Custom_Status__c, BillToContact__c, Manager__c,
             	(SELECT Id
             	FROM OpportunityLineItems)
             FROM Opportunity
@@ -144,8 +143,7 @@
         Id expected = getAccounts()[0].Id;
         Id actual = listOfOpportunities[0].Manager__c;
         
-        System.assertEquals(expected, actual,
-            'Should Set Manager Field With Corresponding Contact Account');        
+        System.assertEquals(expected, actual, 'Should Set Manager Field With Corresponding Contact Account');        
     }
     
     @isTest static void testDeleteRelatedOpportunityLineItemsShouldDeleteLineItemsWhenStatusIsReset(){
@@ -171,14 +169,12 @@
 	    Id expectedManager = getAccounts()[0].Id;
         Id actualManager = listOfOpportunities[0].Manager__c;
         
-        System.assertEquals(expectedManager, actualManager, 
-            'Should Set Manager Field With Corresponding Account');           
+        System.assertEquals(expectedManager, actualManager, 'Should Set Manager Field With Corresponding Account');           
         
         Date expectedCloseDate  = System.today();
         Date actualCloseDate = listOfOpportunities[0].CloseDate;
         
-        System.assertEquals(expectedCloseDate, actualCloseDate,
-            'Opportunity close date should be today\'s date');        
+        System.assertEquals(expectedCloseDate, actualCloseDate, 'Opportunity close date should be today\'s date');        
     }
 
     @isTest static void testOnAfterUpdateShouldDeleteAssociatedOpportunityLineItemsOnReset(){
@@ -191,7 +187,6 @@
         Integer expected = 0;
         Integer actual = listOfOpportunities[0].OpportunityLineItems.size();
         
-        System.assertEquals(expected, actual,
-            'Should Delete Line Items When Status Is Reset');        
+        System.assertEquals(expected, actual, 'Should Delete Line Items When Status Is Reset');        
     }
 }

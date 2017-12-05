@@ -68,7 +68,8 @@ public class Opportunities extends fflib_SObjectDomain {
         for(Integer index =0; index < listOfOpportunities.size(); index++) {
             if( listOfOpportunities[index].Owner.Email != null
                 && ! listOfOldOpportunities[index].StageName.equals(listOfOpportunities[index].StageName) ){
-                listOfOpportunitiesToEmail.add(listOfOpportunities[index]);    
+                
+				listOfOpportunitiesToEmail.add(listOfOpportunities[index]);    
             }
         }
 		
