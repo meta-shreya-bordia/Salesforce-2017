@@ -14,10 +14,7 @@ public class AccountReportController {
         List<AggregateResult> listOfAccountOpportunities = AccountDAO.getAccountOpportunities();
         
         for(AggregateResult account :listOfAccountOpportunities){
-            listOfAccounts.add(
-               new AccountReportController(
-               String.valueOf(account.get('AccountName')),
-               Integer.valueOf(account.get('SumOfOpportunity'))) );
+            listOfAccounts.add( new AccountReportController(String.valueOf(account.get('AccountName')), Integer.valueOf(account.get('SumOfOpportunity'))));
         }
         
         return listOfAccounts;

@@ -2,13 +2,13 @@ public class Accounts extends fflib_SObjectDomain {
     public Accounts(List<SObject> sObjectList) {
         super(sObjectList);
     }
-
+    
     public class Constructor implements fflib_SObjectDomain.IConstructable {
         public fflib_SObjectDomain construct(List<SObject> sObjectList) {
             return new Accounts(sObjectList);
         }
     }
-      
+    
     public override void onAfterInsert(){
         updateChildCount();
     }
@@ -31,7 +31,7 @@ public class Accounts extends fflib_SObjectDomain {
         
         for(Account parentAccount :listOfParentAccounts){
             parentAccount.Child_Count__c = parentAccount.Accounts__r.size();
-	}
+        }
         
         update listOfParentAccounts;
     }
