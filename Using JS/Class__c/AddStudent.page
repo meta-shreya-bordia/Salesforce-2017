@@ -3,7 +3,7 @@
     	<apex:pageBlock title="{!Add_Student}">
             <apex:pageBlockSection >
 	        <apex:inputField value="{!student.First_Name__c}"/>
-    	        <apex:inputField value="{!student.Last_Name__c}"/>
+    	    <apex:inputField value="{!student.Last_Name__c}"/>
             </apex:pageBlockSection>
         
             <apex:pageBlockButtons >
