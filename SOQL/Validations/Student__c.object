@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>StudentView</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>StudentView</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>School app where student must belong to a class</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Age__c</fullName>
+        <description>Formula field which calculates student&apos;s present age</description>
+        <externalId>false</externalId>
+        <formula>(TODAY() - DOB__c)/365</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Age</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Class__c</fullName>
+        <description>Student is studying in which class</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Student is in which class</inlineHelpText>
+        <label>Class</label>
+        <referenceTo>Class__c</referenceTo>
+        <relationshipLabel>Students</relationshipLabel>
+        <relationshipName>Student</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>DOB__c</fullName>
+        <description>Student&apos;s date of birth determines student&apos;s age</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Your birthdate</inlineHelpText>
+        <label>Date of Birth</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <description>Point of contact of a student</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Your email address</inlineHelpText>
+        <label>Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>First_Name__c</fullName>
+        <description>Student&apos;s First Name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Student&apos;s First Name</inlineHelpText>
+        <label>First Name</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Name__c</fullName>
+        <description>Student&apos;s Last Name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Student&apos;s Last Name</inlineHelpText>
+        <label>Last Name</label>
+        <length>30</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Married__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Whether the student is married or not</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is student married?</inlineHelpText>
+        <label>isMarried</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Mix_Pct__c</fullName>
+        <description>Student&apos;s current percentage</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Student&apos;s current percentage</inlineHelpText>
+        <label>Mix Pct</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Multiple_of_5__c</fullName>
+        <description>Checks if a number is a multiple of 5 or not</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a number</inlineHelpText>
+        <label>Multiple of 5</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sex__c</fullName>
+        <description>Student&apos;s gender</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter your gender</inlineHelpText>
+        <label>Sex</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Male</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Female</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Spouse_Name__c</fullName>
+        <description>Student&apos;s husband/wife&apos;s name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter your husband/wife&apos;s name</inlineHelpText>
+        <label>Spouse Name</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Weekdate__c</fullName>
+        <description>Only accepts a date if it is not a weekend</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a date</inlineHelpText>
+        <label>Weekdate</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <label>Student</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Show_Male_Students</fullName>
+        <columns>NAME</columns>
+        <columns>First_Name__c</columns>
+        <columns>Last_Name__c</columns>
+        <columns>Class__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Sex__c</field>
+            <operation>equals</operation>
+            <value>Male</value>
+        </filters>
+        <label>Show Male Students</label>
+    </listViews>
+    <nameField>
+        <displayFormat>S-{0000}</displayFormat>
+        <label>Student Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Students</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>First_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Last_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Class__c</customTabListAdditionalFields>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <listViewButtons>Delete_Students</listViewButtons>
+        <lookupDialogsAdditionalFields>First_Name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Last_Name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Class__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>First_Name__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Last_Name__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Class__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>First_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Last_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Class__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>DateIsWeekDay</fullName>
+        <active>true</active>
+        <description>Validates that the value of a custom date field is a weekday (not Saturday or Sunday).</description>
+        <errorConditionFormula>CASE(MOD( Weekdate__c - DATE(1900, 1, 7), 7),0, 0, 6, 0, 1) = 0
+ ||
+CASE(MOD( Weekdate__c - DATE(1900, 1, 7), 7),0, 0, 6, 0, 1) = 6</errorConditionFormula>
+        <errorDisplayField>Weekdate__c</errorDisplayField>
+        <errorMessage>Work only weekdays. No Saturday Sunday value accepted</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ValidDOB</fullName>
+        <active>true</active>
+        <errorConditionFormula>DOB__c &gt; TODAY()</errorConditionFormula>
+        <errorDisplayField>DOB__c</errorDisplayField>
+        <errorMessage>Student DOB should not be greater than TODAY</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ValidMixPct</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR
+(
+Mix_Pct__c &lt; 0.00, 
+Mix_Pct__c &gt; 100.00
+)</errorConditionFormula>
+        <errorDisplayField>Mix_Pct__c</errorDisplayField>
+        <errorMessage>Percentage must be in valid range (0-100%)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ValidMultiple</fullName>
+        <active>true</active>
+        <description>Validates that a custom field called Multiple of 5 is a multiple of five.</description>
+        <errorConditionFormula>( Multiple_of_5__c  / 5 )  &lt;&gt; 0</errorConditionFormula>
+        <errorDisplayField>Multiple_of_5__c</errorDisplayField>
+        <errorMessage>Number must be a multiple of five.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Delete_Students</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Delete Students</masterLabel>
+        <openType>sidebar</openType>
+        <page>DeleteStudents</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>Details</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>page</linkType>
+        <masterLabel>Details</masterLabel>
+        <openType>newWindow</openType>
+        <page>StudentDetailView</page>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+    </webLinks>
+    <webLinks>
+        <fullName>Edit_Student_Name</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Edit Student</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/apex/EditStudent?id={!Student__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>HelloWorld</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Hello World</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>alert(&apos;Hello World&apos;);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_Class</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New Class</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.location.href = &quot;/apex/ClassNewView&quot;;</url>
+    </webLinks>
+</CustomObject>
