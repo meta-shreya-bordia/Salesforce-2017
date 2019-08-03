@@ -1,0 +1,28 @@
+<apex:page controller="StudentListViewController">
+    <apex:form id="form">
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!students}" var="student">
+                <apex:column headerValue="{!$Label.Id}">
+                    <apex:commandLink action="{!setSelectedStudent}" value="{!student.Name}" reRender="form, StudentDetails">  
+                        <apex:param name="selectedStudentId" value="{!student.Id}" assignTo="{!selectedStudentId}" />
+                    </apex:commandLink>
+                </apex:column>
+                
+                <apex:column headerValue="{!$Label.First_Name}" value="{!student.First_Name__c}" />
+                <apex:column headerValue="{!$Label.Last_Name}" value="{!student.Last_Name__c}" />
+                <apex:column headerValue="{!$Label.ClassLabel}" value="{!student.Class__c}" />
+                <apex:column />
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        
+        <apex:pageBlock id="StudentDetails" rendered="{!renderDetails}">
+            <apex:pageBlockSection >
+                <apex:outputField label="{!$Label.First_Name}" value="{!selectedStudent.First_Name__c}" />
+                <apex:outputField label="{!$Label.Last_Name}" value="{!selectedStudent.Last_Name__c}" />
+                <apex:outputField label="{!$Label.ClassLabel}" value="{!selectedStudent.Class__c}" />
+                <apex:outputField label="{!$Label.Sex}" value="{!selectedStudent.Sex__c}" />
+                <apex:outputField label="{!$Label.Date_Of_Birth}" value="{!selectedStudent.DOB__c}" />    
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
