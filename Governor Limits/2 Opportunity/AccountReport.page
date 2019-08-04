@@ -1,0 +1,8 @@
+<apex:page controller="AccountReportController" showHeader="true">
+    <apex:pageBlock title="{!$Label.Accounts}">
+        <apex:pageBlockTable value="{!accounts}" var="account" id="accountList">
+            <apex:column headerValue="{!$Label.Account_Name}" value="{!account.name}"/>
+            <apex:column headerValue="{!$Label.Account_Opportunity_Amount}" value="{!account.quantity}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>
