@@ -1,0 +1,50 @@
+<apex:component controller="ObjectListController">
+    <apex:attribute name="ObjectType" description="sObject type to get list view"
+        type="String" assignTo="{!queryObject}" required="required"/>
+    
+    <apex:form >        
+        <apex:pageBlock id="object_list" title="{!queryObject}">
+        	<apex:panelGrid columns="12"> 
+                 <apex:commandButton status="fetchStatus" reRender="object_list"
+                 	value="{!$Label.First}" action="{!controller.first}"
+                    disabled="{! !controller.hasPrevious}"/>      
+                 <apex:commandButton status="fetchStatus" reRender="object_list"
+                    value="{!$Label.Previous}" action="{!controller.previous}"
+                    disabled="{! !controller.hasPrevious}"/>      
+                 <apex:commandButton status="fetchStatus" reRender="object_list"
+                    value="{!$Label.Next}" action="{!controller.next}"
+                    disabled="{! !controller.hasNext}"/> 
+                 <apex:commandButton status="fetchStatus" reRender="object_list"
+                    value="{!$Label.Last}" action="{!controller.last}"
+                    disabled="{! !controller.hasNext}"/>
+                 {!$Label.Page}: <apex:outputText value=" {!controller.PageNumber} of 
+                    {! CEILING(controller.ResultSize / controller.PageSize) }"/>
+                
+                {!$Label.Records_per_page}:
+                <apex:selectList value="{!controller.PageSize}" size="1">
+                    <apex:selectOption itemValue="5" itemLabel="5"/>
+                    <apex:selectOption itemValue="10" itemLabel="10"/>
+                    <apex:selectOption itemValue="20" itemLabel="20"/>
+                    <apex:actionSupport event="onclick" reRender="object_list"/>
+                </apex:selectList>
+           
+                <apex:inputText label="{!$Label.Go_To}" value="{!jumpToPage}" />
+                <apex:commandButton action="{!goToPage}" reRender="object_list" value="{!$Label.Go_To}"/>
+            </apex:panelGrid>
+            
+            <apex:pageBlockTable value="{!objectList}" var="object">
+                <apex:repeat value="{!fieldNames}" var="field">                   
+                    <apex:column value="{!object[field]}">
+	                    <apex:facet name="header">
+    	                	<apex:commandLink action="{!sorting}" reRender="object_list">
+                                <apex:param name="sortOrder" value="{!field}" assignTo="{!sortOrder}" />
+                                <apex:outputText value="{!field}"/>
+                	        </apex:commandLink>
+                    	</apex:facet>
+                    </apex:column>
+                </apex:repeat>
+            </apex:pageBlockTable>  
+            
+    	</apex:pageBlock>
+    </apex:form>
+</apex:component>
