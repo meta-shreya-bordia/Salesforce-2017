@@ -1,0 +1,42 @@
+<apex:page controller="AccountSearchController">
+    <apex:form >
+        <!--Filter-->
+    	<apex:pageBlock >            
+            <apex:pageBlockSection title="{!$Label.Filter}" columns="1">
+                <apex:inputText label="{!$Label.Billing_City}" value="{!billingCity}" />
+                <apex:inputText label="{!$Label.Billing_State}" value="{!billingState}" />
+                <apex:inputText label="{!$Label.Billing_Country}" value="{!billingCountry}" />
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="{!$Label.Search}" action="{!search}" status="status" reRender="account_list" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+        <!--Account List--->
+        <apex:pageBlock title="{!$Label.Accounts}" id="account_list">
+        	<apex:pageBlockTable columns="5" value="{!accounts}" var="account">
+                <apex:column headerValue="{!$Label.Id}" value="{!account.Id}" />
+                <apex:column headerValue="{!$Label.Account_Name}" value="{!account.Name}" />
+                <apex:column headerValue="{!$Label.Billing_City}" value="{!account.BillingCity}" />
+                <apex:column headerValue="{!$Label.Billing_State}" value="{!account.BillingState}" />
+                <apex:column headerValue="{!$Label.Billing_Country}" value="{!account.BillingCountry}" />
+            </apex:pageBlockTable>
+            
+             <apex:panelGrid columns="8"> 
+                 <apex:commandButton status="fetchStatus" reRender="account_list"
+                 	value="{!$Label.First}" action="{!accountList.first}"
+                    disabled="{! !accountList.hasPrevious}" title="First Page"/>      
+                 <apex:commandButton status="fetchStatus" reRender="account_list"
+                    value="{!$Label.Previous}" action="{!accountList.previous}"
+                    disabled="{! !accountList.hasPrevious}" title="Previous Page"/>      
+                 <apex:commandButton status="fetchStatus" reRender="account_list"
+                    value="{!$Label.Next}" action="{!accountList.next}"
+                    disabled="{! !accountList.hasNext}" title="Next Page"/> 
+                 <apex:commandButton status="fetchStatus" reRender="account_list"
+                    value="{!$Label.Last}" action="{!accountList.last}"
+                    disabled="{! !accountList.hasNext}" title="Last Page"/> 
+            </apex:panelGrid>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

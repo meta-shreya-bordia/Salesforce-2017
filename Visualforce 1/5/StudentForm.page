@@ -1,0 +1,16 @@
+<apex:page standardController="Student__c" extensions="StudentFormExtension">
+  	<apex:form >
+  		<apex:pageBlock >
+      		<apex:pageBlockSection columns="1">
+              <apex:outputField value="{!Student__c.Name}"/>
+                  <apex:outputField label="{!$Label.First_Name}" value="{!Student__c.First_Name__c}"/>
+                  <apex:outputField label="{!$Label.Last_Name}" value="{!Student__c.Last_Name__c}"/>
+                  <apex:outputField label="{!$Label.Date_Of_Birth}" value="{!Student__c.DOB__c}"/>
+                  <apex:outputField label="{!$Label.Class}" value="{!Student__c.Class__r.Name}"/>
+              </apex:pageBlockSection>
+          	<apex:pageBlockButtons >
+            	<apex:commandButton action="{!attach}" value="{!$Label.Generate_PDF}" />
+         	</apex:pageBlockButtons>
+      	</apex:pageBlock>
+  	</apex:form>
+</apex:page>
