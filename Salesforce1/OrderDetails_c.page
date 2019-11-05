@@ -1,0 +1,25 @@
+<apex:page controller="OnlinePurchaseOrderController" showHeader="true">
+    <apex:outputText label="{!$Label.Order_Confirmation}" value="{!order.Id}"></apex:outputText>
+    
+    <apex:pageBlock title="Order Details">
+        <apex:pageBlockTable title="{!$Label.Order}" value="{!orderLineItems}" var="orderItems">
+            <apex:column headerValue="{!$Label.Product}" value="{!orderItems.Product__r.Id}" />
+            <apex:column headerValue="{!$Label.Product_Name}" value="{!orderItems.Product__r.Name}" />
+            <apex:column headerValue="{!$Label.Quantity}" value="{!orderItems.Quantity__c}" />
+            <apex:column headerValue="{!$Label.Unit_Price}" value="{!orderItems.UnitPrice__c}" />
+            <apex:column headerValue="{!$Label.Total_Price}" value="{!orderItems.TotalPrice__c}" />
+        </apex:pageBlockTable>
+        
+        <apex:pageBlockSection >
+            <apex:pageBlockSectionItem >
+                <apex:outputField label="{!$Label.Customer_Details}" value="{!order.Account__c}" />
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:outputField label="{!$Label.Total_Items}" value="{!order.NumberOfOrderItems__c}"/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:outputField label="{!$Label.Order_Total}" value="{!order.OrderTotal__c}"/>
+            </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>
